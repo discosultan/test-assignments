@@ -1,0 +1,34 @@
+{
+  "name": "movie-portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "rimraf dist && webpack --bail --progress --profile",
+    "start": "npm run server",
+    "server": "webpack-dev-server --history-api-fallback --inline --progress"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "copy-webpack-plugin": "^3.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.17.0",
+    "postcss-loader": "^0.8.0",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.1",
+    "style-loader": "^0.13.0",
+    "css-loader": "^0.23.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18"
+  },
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-ui-router": "1.0.0-alpha.5",
+    "foundation-sites": "^6.2.1"
+  }
+}

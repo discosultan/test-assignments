@@ -1,0 +1,16 @@
+<section class="row columns">
+    <section>
+        <label><b>Search:</b>
+            <input type="text" ng-model="$ctrl.nameFilter">
+        </label>
+        <label><b>Categories:</b>
+            <select multiple ng-options="item.id as item.name for item in $ctrl.categories" ng-model="$ctrl.categoryFilter">
+            </select>
+        </label>
+    </section>
+
+    <section ng-repeat="movie in $ctrl.movies | filter:$ctrl.nameFilter | inArray:$ctrl.categoryFilter:'category'">
+        <a ui-sref="movie({id:movie.id})"><h1>{{movie.title}}</h1></a>
+        <p><b>Category</b>: {{movie.category}}</p>
+    </section>
+</section>
