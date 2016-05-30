@@ -12,4 +12,4 @@
  ```
  npm start
  ```
- This command starts the Webpack development server that serves the built bundles. You can now browse the app at http://localhost:8080. hanges in the code will automatically build and reload the app.
+ This command starts the Webpack development server that serves the built bundles. You can now browse the app at http://localhost:8080. Changes in the code will automatically build and reload the app.
