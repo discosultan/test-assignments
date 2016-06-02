@@ -1,6 +1,6 @@
 export const ApiLoadingChangedEvent = 'api-loading-changed';
 
-export default class Api {
+export default class MoviePortalApi {
     constructor(eventAggregator, apiHost) {
         this.eventAggregator = eventAggregator;
         this.apiHost = apiHost;
@@ -14,7 +14,7 @@ export default class Api {
     
     fetch(url, options) {
         addToLoading.call(this, +1);
-        this.eventAggregator.publish(ApiLoadingChangedEvent, { numLoading: this.numLoading })
+        this.eventAggregator.publish(ApiLoadingChangedEvent, { numLoading: this.numLoading });
         url = this.apiHost + url;
         return delayPromise(2500).then(() => fetch(url, options).then(
             response => {
@@ -31,7 +31,7 @@ export default class Api {
 
 function addToLoading(amount) {
     this.numLoading += amount;
-    this.eventAggregator.publish(ApiLoadingChangedEvent, { numLoading: this.numLoading })
+    this.eventAggregator.publish(ApiLoadingChangedEvent, { numLoading: this.numLoading });
 }
 
 // Simulate a long running task.
@@ -40,5 +40,5 @@ function delayPromise(timeout) {
         setTimeout(() => {
             resolve();
         }, timeout);
-    })
+    });
 }

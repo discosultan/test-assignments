@@ -1,6 +1,6 @@
 import 'foundation-sites/dist/foundation.css';
 
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 
@@ -8,18 +8,18 @@ import MainLayout from './layout/main-layout.jsx';
 import HomeLayout from './layout/home-layout.jsx';
 import MoviesLayout from './layout/movies-layout.jsx';
 
-import Api from './service/api.js';
+import MoviePortalApi from './service/movie-portal-api.js';
 import EventAggregator from './service/event-aggregator.js';
 
 // Config params.
 const apiHost = 'http://40.113.15.185:3000/';
 
 // App root component.
-class App extends React.Component {
+class App extends Component {
   // Dependency resolution.
   getChildContext() {
     const eventAggregator = new EventAggregator();
-    const api = new Api(eventAggregator, apiHost);
+    const api = new MoviePortalApi(eventAggregator, apiHost);
     return {
       eventAggregator: eventAggregator,
       api: api

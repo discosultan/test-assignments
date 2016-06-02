@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ApiLoadingChangedEvent } from '../service/api.js';
+import { ApiLoadingChangedEvent } from '../service/movie-portal-api.js';
 import NavigationBar from '../component/navigation-bar.jsx';
 
 export default class MainLayout extends Component {
