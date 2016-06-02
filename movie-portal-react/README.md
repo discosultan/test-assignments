@@ -1,6 +1,6 @@
 ## About
 
-CGI's assignment where the assignee is required to build a web API and an front end SPA for a movie portal. This repository only includes the front end part of the assignment.
+CGI's assignment where the assignee is required to build a web API and an front end SPA for a movie portal. This repository only includes the front end part of the assignment implemented in React.
 
 ## Setup
  
