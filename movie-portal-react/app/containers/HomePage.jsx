@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class HomeLayout extends Component {
+export default class HomePage extends React.Component {
     render() {
         return (
             <section className="row columns">

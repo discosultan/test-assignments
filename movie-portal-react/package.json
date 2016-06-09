@@ -8,12 +8,17 @@
     "start": "npm run server",
     "server": "webpack-dev-server --history-api-fallback --inline --progress"
   },
+  "babel": {
+    "presets": ["es2015", "react"],
+    "plugins": ["transform-object-rest-spread"]
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.5.0",
     "copy-webpack-plugin": "^3.0.0",
@@ -31,6 +36,9 @@
     "foundation-sites": "^6.2.3",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-router": "^2.4.1"
+    "react-redux": "^4.4.5",
+    "react-router": "^2.4.1",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2"
   }
 }
