@@ -1,25 +1,29 @@
 import { combineReducers } from 'redux';
 
-const initialState = {
-  numLoading: 0
-};
-
-const movies = (state = initialState, action) => {
+function numLoading(state = 0, action) {
   switch (action.type) {
     case 'REQUEST_MOVIES':
-      return Object.assign({}, state, {
-        numLoading: state.numLoading + 1
-      });
+    case 'REQUEST_CATEGORIES':
+      return state + 1;
     case 'RECEIVE_MOVIES':
-      return Object.assign({}, state, {
-        numLoading: state.numLoading - 1,
-        movies: action.movies
-      });
+    case 'RECEIVE_CATEGORIES':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+function movies(state = [], action) {
+  switch (action.type) {
+    case 'RECEIVE_MOVIES':
+      console.log(action);
+      return action.movies;
     default:
       return state;
   }
 };
 
-export default combineReducers({
+export default {
+    numLoading,
     movies
-});
+};

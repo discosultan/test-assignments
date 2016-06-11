@@ -12,7 +12,7 @@ function delay(timeout) {
     return response => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                resolve();
+                resolve(response);
             }, timeout);
         });
     }
@@ -22,7 +22,7 @@ function parseJSON(response) {
     return response.json();
 }
 
-export default class MoviePortalApi {
+export default class RestApi {
     constructor(apiHost) {
         this.apiHost = apiHost;
     }
@@ -36,9 +36,9 @@ export default class MoviePortalApi {
         url = this.apiHost + url;
         return fetch(url, options)
             .then(checkStatus)
-            .then(delay(2500)) // Simulate a long running task.
-            .then(parseJSON)
-            .then(data => ({ data }))
-            .catch(err => ({ err }));
+            .then(delay(2000)) // Simulate a long running task.
+            .then(parseJSON);
+            // .then(data => (data }))
+            // .catch(err => ({ err }));
     }
 }

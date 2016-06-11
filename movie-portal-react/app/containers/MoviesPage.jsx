@@ -1,25 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 // import TextFilter from '../components/text-filter.jsx';
 // import CategoryFilter from '../components/category-filter.jsx';
-// import MovieList from '../components/movie-list.jsx';
+import MovieList from '../components/MovieList.jsx';
 
-import { requestMovies } from '../actions/index.js';
+import { requestMovies, requestCategories } from '../actions/index.js';
 
 class MoviesPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            movies: [],
-            categories: [],
-            filteredMovies: []
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         categories: [],
+    //         filteredMovies: []
+    //     }
+    // }
 
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(requestMovies());
+        // dispatch(requestCategories());
 
         // this.api.get('movies').then(movies => {
         //     this.setState(Object.assign(this.state, { movies: movies }));
@@ -29,11 +29,12 @@ class MoviesPage extends React.Component {
     }
 
     render() {
+        const { movies } = this.props;
         return (
-            <section className="row columns">tere
+            <section className="row columns">
                 {/*<TextFilter ref="textFilter" onChange={filterMovies.bind(this)} />
-                <CategoryFilter ref="categoryFilter" onChange={filterMovies.bind(this)} categories={this.state.categories} />
-                <MovieList movies={this.state.filteredMovies} />*/}
+                <CategoryFilter ref="categoryFilter" onChange={filterMovies.bind(this)} categories={this.state.categories} />*/}
+                <MovieList movies={movies} />
             </section>
         );
     }
@@ -45,4 +46,9 @@ function filterMovies() {
     this.setState(Object.assign(this.state, { filteredMovies: filteredMovies }))
 }
 
-export default connect()(MoviesPage);
+function mapStateToProps(state) {
+  const { movies } = state;
+  return { movies };
+}
+
+export default connect(mapStateToProps)(MoviesPage);

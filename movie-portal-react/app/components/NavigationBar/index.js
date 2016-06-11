@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
-export default class NavigationBar extends Component {
+import loading from './loading.gif';
+
+export default class NavigationBar extends React.Component {
     render() {
         return (
             <nav className="top-bar">
@@ -9,9 +11,11 @@ export default class NavigationBar extends Component {
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/movies">Movies</Link></li>
-                        {/*this.props.isLoading &&
-                            <li><img src="img/loading.gif" width="38" height="38" /></li>
-                        */}
+                        {this.props.numLoading > 0 &&
+                            <li>
+                              <img width="38" height="38" src={loading} />
+                            </li>
+                        }
                     </ul>
                 </div>
             </nav>

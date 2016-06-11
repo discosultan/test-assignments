@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import NavigationBar from '../components/NavigationBar.jsx';
+import NavigationBar from '../components/NavigationBar';
 
 class App extends React.Component {
     render() {
         const { numLoading } = this.props;
         return (
             <div>
-                <NavigationBar isLoading={numLoading} />
+                <NavigationBar numLoading={numLoading} />
                 <main>
                     {this.props.children}
                 </main>
@@ -18,8 +18,8 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { numLoading } = state;
-    return { isLoading: numLoading > 0 };
+  const { numLoading } = state;
+  return { numLoading };
 }
 
 export default connect(mapStateToProps)(App);
