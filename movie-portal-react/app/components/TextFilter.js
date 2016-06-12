@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class TextFilter extends Component {        
+export default class TextFilter extends React.Component {
     apply(input, selector) {
         let valueUpper = this.refs.textFilter.value.toUpperCase();
         return input.filter(item => selector(item).toUpperCase().indexOf(valueUpper) >= 0);

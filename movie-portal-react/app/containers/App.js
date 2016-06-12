@@ -18,8 +18,8 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { numLoading } = state;
-  return { numLoading };
+    const { numLoading } = state;
+    return { numLoading };
 }
 
 export default connect(mapStateToProps)(App);

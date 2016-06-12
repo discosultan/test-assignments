@@ -29,7 +29,7 @@ module.exports = function makeWebpackConfig() {
      * Karma will set this when it's a test build
      */
     config.entry = {
-        app: './app/index.jsx'
+        app: './app'
     };
 
     /**

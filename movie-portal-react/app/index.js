@@ -9,13 +9,13 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
-import App from './containers/App.jsx';
-import HomePage from './containers/HomePage.jsx';
-import MoviesPage from './containers/MoviesPage.jsx';
+import App from './containers/App';
+import HomePage from './containers/HomePage';
+import MoviesPage from './containers/MoviesPage';
 
 // import MoviePortalApi from './utils/movie-portal-api.js';
 
-import reducers from './reducers/index';
+import * as reducers from './reducers';
 
 // Config params.
 // const initialState = {

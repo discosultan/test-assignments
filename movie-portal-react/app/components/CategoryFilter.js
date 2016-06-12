@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class CategoryFilter extends Component {
+export default class CategoryFilter extends React.Component {
     constructor(props) {
         super(props);
         this.selectedValues = [];
     }
-            
-    apply(input, selector) {        
+
+    apply(input, selector) {
         return this.selectedValues.length == 0
             ? input
             : input.filter(item => this.selectedValues.indexOf(selector(item)) >= 0);
@@ -17,7 +17,7 @@ export default class CategoryFilter extends Component {
             <label><b>Categories:</b>
                 <select ref="listFilter" multiple onChange={handleChange.bind(this)}>
                     {this.props.categories.map(category =>
-                        <option key={category.id} value={category.id}>{category.name}</option>    
+                        <option key={category.id} value={category.id}>{category.name}</option>
                     )}
                 </select>
             </label>

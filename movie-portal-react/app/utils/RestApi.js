@@ -35,10 +35,8 @@ export default class RestApi {
     fetch(url, options) {
         url = this.apiHost + url;
         return fetch(url, options)
-            .then(checkStatus)
-            .then(delay(2000)) // Simulate a long running task.
-            .then(parseJSON);
-            // .then(data => (data }))
-            // .catch(err => ({ err }));
+              .then(checkStatus)
+              .then(delay(2000)) // Simulate a long running task.
+              .then(parseJSON);
     }
 }
