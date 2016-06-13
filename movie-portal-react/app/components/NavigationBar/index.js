@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import loading from './loading.gif';
 
+import UndoRedo from '../../containers/UndoRedo';
+
 export default class NavigationBar extends React.Component {
     render() {
         const { numLoading } = this.props;
@@ -16,6 +18,9 @@ export default class NavigationBar extends React.Component {
                             <li><img width="38" height="38" src={loading} /></li>
                         }
                     </ul>
+                </div>
+                <div className="top-bar-right">
+                    <UndoRedo />
                 </div>
             </nav>
         );

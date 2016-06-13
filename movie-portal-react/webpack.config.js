@@ -106,12 +106,6 @@ module.exports = function makeWebpackConfig() {
                 // You can add here any file extension you want to get copied to your output
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
                 loader: 'file'
-            }, {
-                // HTML LOADER
-                // Reference: https://github.com/webpack/raw-loader
-                // Allow loading html through js
-                test: /\.html$/,
-                loader: 'raw'
             }]
     };
 
@@ -131,21 +125,18 @@ module.exports = function makeWebpackConfig() {
      * Reference: http://webpack.github.io/docs/configuration.html#plugins
      * List: http://webpack.github.io/docs/list-of-plugins.html
      */
-    config.plugins = [];
-
-    // Reference: https://github.com/ampedandwired/html-webpack-plugin
-    // Render index.html
-    config.plugins.push(
+    config.plugins = [
+        // Reference: https://github.com/ampedandwired/html-webpack-plugin
+        // Render index.html
         new HtmlWebpackPlugin({
             template: './app/index.html',
             inject: 'body'
         }),
-
         // Reference: https://github.com/webpack/extract-text-webpack-plugin
         // Extract css files
         // Disabled when in test mode or not in build mode
         new ExtractTextPlugin('[name].[hash].css', { disable: !isProd })
-    )
+    ];
 
     // Add build specific plugins
     if (isProd) {

@@ -1,10 +1,13 @@
 import RestApi from '../../utils/RestApi';
-const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI
+const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI?
 
 export const requestMovies = () => dispatch => {
     dispatch({ type: 'REQUEST_MOVIES' });
     moviePortalApi.get('movies')
-                  .then(movies => dispatch(receiveMovies(movies)));
+                  .then(movies => {
+                      dispatch(receiveMovies(movies));
+                      if (movies.length) dispatch(requestMovieDetails(movies[0].id));                      
+                  });
 }
 
 export const receiveMovies = movies => ({
@@ -40,13 +43,21 @@ export const receiveCategories = categories => ({
     categories
 });
 
-
-export const setSearchFilter = filter => ({
-    type: 'SET_SEARCH_FILTER',
-    filter
+export const filterMovies = (movies, categoryIds, searchString) => ({
+    type: 'FILTER_MOVIES',
+    movies,
+    categoryIds,
+    searchString
 });
 
-export const setCategoryFilter = filter => ({
-    type: 'SET_CATEGORY_FILTER',
-    filter
-});
+// export const setSearchFilter = (input, searchString) => ({
+//     type: 'SET_SEARCH_FILTER',
+//     input,
+//     searchString
+// });
+//
+// export const setCategoryFilter = (input, categoryIds) => ({
+//     type: 'SET_CATEGORY_FILTER',
+//     input,
+//     categoryIds
+// });
