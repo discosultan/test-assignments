@@ -1,13 +1,19 @@
 import RestApi from '../../utils/RestApi';
 const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI?
 
-export const requestMovies = () => dispatch => {
+export const requestMovies = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIES' });
-    moviePortalApi.get('movies')
-                  .then(movies => {
-                      dispatch(receiveMovies(movies));
-                      if (movies.length) dispatch(requestMovieDetails(movies[0].id));
-                  });
+    const state = getState();
+    const existingMovies = state.moviesPage.movies;
+    if (existingMovies.length) {
+        dispatch(receiveMovies(existingMovies));
+    } else {
+        moviePortalApi.get('movies')
+                      .then(movies => {
+                          dispatch(receiveMovies(movies));
+                          if (movies.length) dispatch(requestMovieDetails(movies[0].id));
+                      });
+    }
 }
 
 export const receiveMovies = movies => ({
@@ -15,15 +21,16 @@ export const receiveMovies = movies => ({
     movies
 });
 
-export const selectMovie = id => ({
-    type: 'SELECT_MOVIE',
-    id
-});
-
-export const requestMovieDetails = id => dispatch => {
+export const requestMovieDetails = id => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIE_DETAILS', id: id });
-    moviePortalApi.get(`movies/${id}`)
-                  .then(movieDetails => dispatch(receiveMovieDetails(movieDetails)));
+    const state = getState();
+    const existingMovieDetails = state.moviesPage.movieDetailsMap[id];
+    if (existingMovieDetails) {
+        dispatch(receiveMovieDetails(existingMovieDetails));
+    } else {
+        moviePortalApi.get(`movies/${id}`)
+                      .then(movieDetails => dispatch(receiveMovieDetails(movieDetails)));
+    }
 }
 
 export const receiveMovieDetails = movieDetails => ({
@@ -32,10 +39,16 @@ export const receiveMovieDetails = movieDetails => ({
 });
 
 
-export const requestCategories = () => dispatch => {
+export const requestCategories = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_CATEGORIES' });
-    moviePortalApi.get('categories')
-                  .then(categories => dispatch(receiveCategories(categories)));
+    const state = getState();
+    const existingCategories = state.moviesPage.categories;
+    if (existingCategories.length) {
+        dispatch(receiveCategories(existingCategories));
+    } else {
+        moviePortalApi.get('categories')
+                      .then(categories => dispatch(receiveCategories(categories)));
+    }
 }
 
 export const receiveCategories = categories => ({

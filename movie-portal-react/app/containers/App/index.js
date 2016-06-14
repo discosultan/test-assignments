@@ -9,6 +9,7 @@ class App extends React.Component {
         return (
             <div>
                 <NavigationBar numLoading={numLoading} />
+                <br />
                 <main>
                     {this.props.children}
                 </main>

@@ -5,7 +5,7 @@ import './styles.css';
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';
-import {Router, Route} from 'react-router';
+import {Router, Route, IndexRoute} from 'react-router';
 
 import configStore from './config/store';
 import configHistory from './config/history';
@@ -21,9 +21,9 @@ const history = configHistory(store);
 render(
     <Provider store={store}>
         <Router history={history}>
-            <Route component={App}>
-                <Route path="/" component={HomePage}/>
-                <Route path="/movies" component={MoviesPage}/>
+            <Route path="/" component={App}>
+                <IndexRoute component={HomePage} />
+                <Route path="movies" component={MoviesPage} />
             </Route>
         </Router>
     </Provider>,

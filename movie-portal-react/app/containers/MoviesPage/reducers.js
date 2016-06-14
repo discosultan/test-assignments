@@ -19,17 +19,17 @@ function categories(state = [], action) {
     }
 }
 
-function selectedMovieId(state = null, action) {
+function selectedMovieDetails(state = null, action) {
     switch (action.type) {
-        case 'SELECT_MOVIE':
-            return action.id;
-        case 'RECEIVE_MOVIES':
-            return action.movies[0].id || null;
+        case 'RECEIVE_MOVIE_DETAILS':
+            return action.movieDetails;
         default:
             return state;
     }
 }
 
+// It's only purpose is to keep a client side cache of already requested
+// movie details.
 function movieDetailsMap(state = {}, action) {
     switch (action.type) {
         case 'RECEIVE_MOVIE_DETAILS':
@@ -61,13 +61,13 @@ function searchFilter(state = '', action) {
 
 // To make a state change undoable, simply wrap it using `undoable` helper.
 // The `distinctState` filter defines only to undo distinct changes to the state.
-const undoableSelectedMovieId = undoable(selectedMovieId, { filter: distinctState() });
+const undoableSelectedMovieDetails = undoable(selectedMovieDetails, { filter: distinctState() });
 
 export default combineReducers({
     movies,
     categories,
-    // selectedMovieId,
-    selectedMovieId: undoableSelectedMovieId,
+    // selectedMovieDetails,
+    selectedMovieDetails: undoableSelectedMovieDetails,
     movieDetailsMap,
     categoryFilter,
     searchFilter

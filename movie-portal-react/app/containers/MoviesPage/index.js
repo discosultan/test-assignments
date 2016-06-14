@@ -12,14 +12,16 @@ import * as actions from './actions';
 
 class MoviesPage extends React.Component {
     componentDidMount() {
-        const { movies, categories, requestMovies, requestCategories } = this.props;
-        if (!movies.length) requestMovies();
-        if (!categories.length) requestCategories();
+        const { requestMovies, requestCategories } = this.props;
+        requestMovies();
+        requestCategories();
     }
 
     render() {
-        const { filteredMovies, categories, selectedMovieId, movieDetailsMap, setSearchFilter, setCategoryFilter, searchFilter, categoryFilter } = this.props;
-        const selectedMovieDetail = movieDetailsMap[selectedMovieId];
+        const {
+            filteredMovies, categories, selectedMovieDetails, requestMovieDetails,
+            searchFilter, categoryFilter, setSearchFilter, setCategoryFilter
+        } = this.props;
         return (
             <section>
                 <section className="row columns">
@@ -30,23 +32,17 @@ class MoviesPage extends React.Component {
 
                 <section className="row">
                   <section className="medium-6 columns">
-                      <MovieList movies={filteredMovies} onSelect={this.handleSelectMovie.bind(this)} />
+                      <MovieList movies={filteredMovies} onSelect={requestMovieDetails} />
                   </section>
 
                   <section className="medium-6 columns">
-                      {!!selectedMovieDetail &&
-                          <MovieDetails movieDetails={selectedMovieDetail} />
+                      {!!selectedMovieDetails &&
+                          <MovieDetails movieDetails={selectedMovieDetails} />
                       }
                   </section>
                 </section>
             </section>
         );
-    }
-
-    handleSelectMovie(id) {
-        const { selectMovie, requestMovieDetails, movieDetailsMap } = this.props;
-        selectMovie(id);
-        if (!movieDetailsMap[id]) requestMovieDetails(id);
     }
 }
 
@@ -70,11 +66,10 @@ const filteredMoviesSelector = createSelector(
 );
 
 function mapStateToProps(state) {
-    const { movies, categories, selectedMovieId, movieDetailsMap, searchFilter, categoryFilter } = state.moviesPage;
+    const { movies, categories, selectedMovieDetails, searchFilter, categoryFilter } = state.moviesPage;
     return {
-        movies, categories, movieDetailsMap,
-        searchFilter, categoryFilter,
-        selectedMovieId: selectedMovieId.present,
+        movies, categories, searchFilter, categoryFilter,
+        selectedMovieDetails: selectedMovieDetails.present,
         filteredMovies: filteredMoviesSelector(state)
     };
 }
