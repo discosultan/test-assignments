@@ -25,6 +25,5 @@ function handleChange(event) {
     const options = [...event.target.options];
     const selectedValues = options.filter(option => option.selected)
                                   .map(option => option.value);
-    this.selectedValues = selectedValues;
     onChange(selectedValues);
 }
