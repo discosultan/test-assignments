@@ -5,13 +5,13 @@ export default class TextBox extends React.Component {
         const { label, value } = this.props;
         return (
             <label><b>{label}:</b>
-                <input type="text" onInput={this.handleInput.bind(this)} defaultValue={value} />
+                <input type="text" onChange={this.handleInput.bind(this)} value={value} />
             </label>
         );
     }
 
     handleInput(event) {
-        const { onInput } = this.props;
-        onInput(event.target.value);
+        const { onChange } = this.props;
+        onChange(event.target.value);
     }
 }

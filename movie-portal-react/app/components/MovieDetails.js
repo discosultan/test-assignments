@@ -2,13 +2,13 @@ import React from 'react';
 
 export default class MovieDetails extends React.Component {
     render() {
-        const { movieDetails } = this.props;
+        const { value } = this.props;
         return (
             <section class="row columns">
-                <h1>{movieDetails.title}</h1>
-                <p><b>Category</b>: {movieDetails.category}</p>
-                <p><b>Rating</b>: {movieDetails.rating}</p>
-                <p><b>Description</b>: {movieDetails.description}</p>
+                <h1>{value.title}</h1>
+                <p><b>Category</b>: {value.category}</p>
+                <p><b>Rating</b>: {value.rating}</p>
+                <p><b>Description</b>: {value.description}</p>
             </section>
         );
     }

@@ -4,6 +4,23 @@ import { ActionCreators } from 'redux-undo';
 import { connect } from 'react-redux';
 
 class UndoRedo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleArrowKeys = event => {
+            const { canUndo, canRedo, undo, redo } = this.props;
+            if (event.keyCode === 37 && canUndo) undo();
+            else if (event.keyCode === 39 && canRedo) redo();
+        };
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.handleArrowKeys, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleArrowKeys, false);
+    }
+
     render() {
         const { canUndo, canRedo, undo, redo } = this.props;
         return (
@@ -16,10 +33,10 @@ class UndoRedo extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const selectedMovieDetails = state.moviesPage.selectedMovieDetails;
+    const moviesPage = state.moviesPage;
     return {
-        canUndo: selectedMovieDetails.past.length > 0,
-        canRedo: selectedMovieDetails.future.length > 0
+        canUndo: moviesPage.past.length > 0,
+        canRedo: moviesPage.future.length > 0
     };
 };
 

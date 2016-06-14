@@ -1,10 +1,11 @@
 import RestApi from '../../utils/RestApi';
+
 const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI?
+const getMoviesPageState = getState => getState().moviesPage.present;
 
 export const requestMovies = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIES' });
-    const state = getState();
-    const existingMovies = state.moviesPage.movies;
+    const existingMovies = getMoviesPageState(getState).movies;
     if (existingMovies.length) {
         dispatch(receiveMovies(existingMovies));
     } else {
@@ -23,8 +24,7 @@ export const receiveMovies = movies => ({
 
 export const requestMovieDetails = id => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIE_DETAILS', id: id });
-    const state = getState();
-    const existingMovieDetails = state.moviesPage.movieDetailsMap[id];
+    const existingMovieDetails = getMoviesPageState(getState).movieDetailsMap[id];
     if (existingMovieDetails) {
         dispatch(receiveMovieDetails(existingMovieDetails));
     } else {
@@ -41,8 +41,7 @@ export const receiveMovieDetails = movieDetails => ({
 
 export const requestCategories = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_CATEGORIES' });
-    const state = getState();
-    const existingCategories = state.moviesPage.categories;
+    const existingCategories = getMoviesPageState(getState).categories;
     if (existingCategories.length) {
         dispatch(receiveCategories(existingCategories));
     } else {
