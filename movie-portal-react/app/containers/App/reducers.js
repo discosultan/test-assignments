@@ -1,4 +1,6 @@
-export function numLoading(state = 0, action) {
+import {combineReducers} from 'redux';
+
+function numLoading(state = 0, action) {
     switch (action.type) {
         case 'REQUEST_MOVIES':
         case 'REQUEST_MOVIE_DETAILS':
@@ -12,3 +14,7 @@ export function numLoading(state = 0, action) {
             return state;
     }
 }
+
+export default combineReducers({
+    numLoading
+});

@@ -1,3 +1,4 @@
+import {combineReducers} from 'redux';
 import undoable, {distinctState} from 'redux-undo';
 
 function movies(state = [], action) {
@@ -7,7 +8,7 @@ function movies(state = [], action) {
         default:
             return state;
     }
-};
+}
 
 function categories(state = [], action) {
     switch (action.type) {
@@ -16,7 +17,7 @@ function categories(state = [], action) {
         default:
             return state;
     }
-};
+}
 
 function selectedMovieId(state = null, action) {
     switch (action.type) {
@@ -40,36 +41,34 @@ function movieDetailsMap(state = {}, action) {
     }
 }
 
-function filteredMovies(state = [], action) {
+function categoryFilter(state = [], action) {
     switch (action.type) {
-        case 'FILTER_MOVIES':
-            return action.movies.filter(movie => !action.categoryIds.length || action.categoryIds.indexOf(movie.category) >= 0);
+        case 'SET_CATEGORY_FILTER':
+            return action.filter;
         default:
             return state;
     }
 }
 
-// function categoryFilter(state = [], action) {
-//     switch (action.type) {
-//         case 'SET_CATEGORY_FILTER':
-//             return action.categoryIds;
-//         default:
-//             return state;
-//     }
-// }
-//
-// function searchFilter(state = '', action) {
-//     switch (action.type) {
-//         case 'SET_SEARCH_FILTER':
-//             return action.searchString;
-//         default:
-//             return state;
-//     }
-// }
+function searchFilter(state = '', action) {
+    switch (action.type) {
+        case 'SET_SEARCH_FILTER':
+            return action.filter;
+        default:
+            return state;
+    }
+}
 
-export default {
+// To make a state change undoable, simply wrap it using `undoable` helper.
+// The `distinctState` filter defines only to undo distinct changes to the state.
+const undoableSelectedMovieId = undoable(selectedMovieId, { filter: distinctState() });
+
+export default combineReducers({
     movies,
     categories,
-    selectedMovieId: undoable(selectedMovieId, { filter: distinctState() }),
-    movieDetailsMap
-};
+    // selectedMovieId,
+    selectedMovieId: undoableSelectedMovieId,
+    movieDetailsMap,
+    categoryFilter,
+    searchFilter
+});

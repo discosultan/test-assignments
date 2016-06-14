@@ -15,11 +15,14 @@ class UndoRedo extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    canUndo: state.selectedMovieId.past.length > 0,
-    canRedo: state.selectedMovieId.future.length > 0
-});
+const mapStateToProps = state => {
+    const selectedMovieId = state.moviesPage.selectedMovieId;
+    return {
+        canUndo: selectedMovieId.past.length > 0,
+        canRedo: selectedMovieId.future.length > 0
+    };
+};
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(ActionCreators, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(ActionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UndoRedo);

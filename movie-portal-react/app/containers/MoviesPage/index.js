@@ -1,9 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 
-import TextFilter from '../../components/TextFilter';
-import CategoryFilter from '../../components/CategoryFilter';
+import TextBox from '../../components/TextBox';
+import MultiSelect from '../../components/MultiSelect';
 import MovieList from '../../components/MovieList';
 import MovieDetails from '../../components/MovieDetails';
 
@@ -17,18 +18,19 @@ class MoviesPage extends React.Component {
     }
 
     render() {
-        const { movies, categories, selectedMovieId, movieDetailsMap } = this.props;
+        const { filteredMovies, categories, selectedMovieId, movieDetailsMap, setSearchFilter, setCategoryFilter, searchFilter, categoryFilter } = this.props;
         const selectedMovieDetail = movieDetailsMap[selectedMovieId];
         return (
             <section>
                 <section className="row columns">
-                    <TextFilter ref="textFilter" onChange={this.handleFilterMovies.bind(this)} />
-                    <CategoryFilter ref="categoryFilter" categories={categories} onChange={this.handleFilterMovies.bind(this)} />
+                    <TextBox label="Search" value={searchFilter} onInput={setSearchFilter} />
+                    <MultiSelect label="Categories" items={categories} value={categoryFilter} onChange={setCategoryFilter}
+                                 keySelector={item => item.id} valueSelector={item => item.name} />
                 </section>
 
                 <section className="row">
                   <section className="medium-6 columns">
-                      <MovieList movies={movies} onSelect={this.handleSelectMovie.bind(this)} />
+                      <MovieList movies={filteredMovies} onSelect={this.handleSelectMovie.bind(this)} />
                   </section>
 
                   <section className="medium-6 columns">
@@ -41,21 +43,6 @@ class MoviesPage extends React.Component {
         );
     }
 
-    // handleFilterByCategory(categoryIds) {
-    //     const { setCategoryFilter } = this.props;
-    //     setCategoryFilter(categoryIds);
-    // }
-    //
-    // handleFilterBySearchString(searchString) {
-    //     const { setSearchFilter } = this.props;
-    //     setSearchFilter(searchString);
-    // }
-
-    handleFilterMovies() {
-        const { movies, filterMovies } = this.props;
-        filterMovies(movies);
-    }
-
     handleSelectMovie(id) {
         const { selectMovie, requestMovieDetails, movieDetailsMap } = this.props;
         selectMovie(id);
@@ -63,14 +50,34 @@ class MoviesPage extends React.Component {
     }
 }
 
-// function filterMovies() {
-//     let filteredMovies = this.refs.textFilter.apply(this.state.movies, movie => movie.title);
-//     filteredMovies = this.refs.categoryFilter.apply(filteredMovies, movie => movie.category);
-//     this.setState(Object.assign(this.state, { filteredMovies: filteredMovies }))
-// }
+const moviesSelector = state => state.moviesPage.movies;
+const categoryFilterSelector = state => state.moviesPage.categoryFilter;
+const searchFilterSelector = state => state.moviesPage.searchFilter.toUpperCase();
+const categoryFilteredMoviesSelector = createSelector(
+    moviesSelector,
+    categoryFilterSelector,
+    (movies, categoryFilter) => categoryFilter.length
+        ? movies.filter(movie => categoryFilter.indexOf(movie.category) >= 0)
+        // We use spread operator to copy the array.
+        // An alternative would be to use array.slice without args.
+        : [...movies]
+);
+const filteredMoviesSelector = createSelector(
+    categoryFilteredMoviesSelector,
+    searchFilterSelector,
+    (partlyFilteredMovies, searchFilter) => partlyFilteredMovies
+        .filter(movie => movie.title.toUpperCase().indexOf(searchFilter) >= 0)
+);
 
-const mapStateToProps = ({movies, categories, selectedMovieId, movieDetailsMap}) =>
-    ({ movies, categories, selectedMovieId: selectedMovieId.present, movieDetailsMap });
+function mapStateToProps(state) {
+    const { movies, categories, selectedMovieId, movieDetailsMap, searchFilter, categoryFilter } = state.moviesPage;
+    return {
+        movies, categories, movieDetailsMap,
+        searchFilter, categoryFilter,
+        selectedMovieId: selectedMovieId.present,
+        filteredMovies: filteredMoviesSelector(state)
+    };
+}
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 

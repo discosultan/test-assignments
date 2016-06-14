@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import {routerReducer} from 'react-router-redux';
 
-import * as appReducers from '../containers/App/reducers';
-import moviesPageReducers from '../containers/MoviesPage/reducers';
+import appReducer from '../containers/App/reducers';
+import moviesPageReducer from '../containers/MoviesPage/reducers';
 
 export default function configStore() {
     const rootReducer = combineReducers({
-        ...appReducers,
-        ...moviesPageReducers,
+        app: appReducer,
+        moviesPage: moviesPageReducer,
         routing: routerReducer // Add the reducer to your store on the `routing` key.
     });
     const initialState = undefined;

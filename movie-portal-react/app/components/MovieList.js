@@ -7,8 +7,11 @@ export default class MovieList extends React.Component {
             <ul>
                 {movies.map(movie =>
                     <li key={movie.id}>
-                        <a onClick={onSelect.bind(this, movie.id)}><h1>{movie.title}</h1></a>
-                        <p><b>Category</b>: {movie.category}</p>
+                        <a onClick={onSelect.bind(this, movie.id)}>
+                            <h1>{movie.title}</h1>
+                        </a>
+
+                        <p><b>Category:</b> {movie.category}</p>
                     </li>
                 )}
             </ul>

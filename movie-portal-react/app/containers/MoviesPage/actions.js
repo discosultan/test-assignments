@@ -6,7 +6,7 @@ export const requestMovies = () => dispatch => {
     moviePortalApi.get('movies')
                   .then(movies => {
                       dispatch(receiveMovies(movies));
-                      if (movies.length) dispatch(requestMovieDetails(movies[0].id));                      
+                      if (movies.length) dispatch(requestMovieDetails(movies[0].id));
                   });
 }
 
@@ -21,7 +21,7 @@ export const selectMovie = id => ({
 });
 
 export const requestMovieDetails = id => dispatch => {
-    dispatch({ type: 'REQUEST_MOVIE_DETAILS' });
+    dispatch({ type: 'REQUEST_MOVIE_DETAILS', id: id });
     moviePortalApi.get(`movies/${id}`)
                   .then(movieDetails => dispatch(receiveMovieDetails(movieDetails)));
 }
@@ -43,21 +43,12 @@ export const receiveCategories = categories => ({
     categories
 });
 
-export const filterMovies = (movies, categoryIds, searchString) => ({
-    type: 'FILTER_MOVIES',
-    movies,
-    categoryIds,
-    searchString
+export const setSearchFilter = filter => ({
+    type: 'SET_SEARCH_FILTER',
+    filter
 });
 
-// export const setSearchFilter = (input, searchString) => ({
-//     type: 'SET_SEARCH_FILTER',
-//     input,
-//     searchString
-// });
-//
-// export const setCategoryFilter = (input, categoryIds) => ({
-//     type: 'SET_CATEGORY_FILTER',
-//     input,
-//     categoryIds
-// });
+export const setCategoryFilter = filter => ({
+    type: 'SET_CATEGORY_FILTER',
+    filter
+});

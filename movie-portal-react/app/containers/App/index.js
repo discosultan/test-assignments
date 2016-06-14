@@ -18,7 +18,7 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { numLoading } = state;
+    const { numLoading } = state.app;
     return { numLoading };
 }
 
