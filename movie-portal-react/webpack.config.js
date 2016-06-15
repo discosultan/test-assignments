@@ -30,7 +30,8 @@ module.exports = {
             // Transpile .js files using babel-loader
             // Compiles ES6 and ES7 into ES5 code
             test: /\.(js|jsx)$/,
-            loader: 'babel'
+            exclude: /node_modules/,
+            loaders: ['react-hot', 'babel']
         }, {
             // CSS LOADER
             // Reference: https://github.com/webpack/css-loader
@@ -62,7 +63,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './app/index.html',
             inject: 'body'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     /**
@@ -72,6 +74,7 @@ module.exports = {
      */
     devServer: {
         contentBase: './app',
-        stats: 'minimal'
+        stats: 'minimal',
+        // hot: true
     }
 };

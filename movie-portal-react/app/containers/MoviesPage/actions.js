@@ -1,6 +1,9 @@
 import RestApi from '../../utils/RestApi';
 
-const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI?
+// Dependency injection should rather be handled through
+// redux store middleware.
+const moviePortalApi = new RestApi('http://40.113.15.185:3000/');
+
 // const getMoviesPageState = getState => getState().moviesPage;
 const getMoviesPageState = getState => getState().moviesPage.present;
 
