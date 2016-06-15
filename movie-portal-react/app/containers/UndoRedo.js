@@ -23,10 +23,15 @@ class UndoRedo extends React.Component {
 
     render() {
         const { canUndo, canRedo, undo, redo } = this.props;
+        const btnStyle = { margin: 0 };
         return (
             <section>
-                <button type="button" className="button no-margin" onClick={undo} disabled={!canUndo}>Undo</button>
-                <button type="button" className="button no-margin" onClick={redo} disabled={!canRedo}>Redo</button>
+                <button type="button" className="button" style={btnStyle} onClick={undo} disabled={!canUndo}>
+                    Undo
+                </button>
+                <button type="button" className="button" style={btnStyle} onClick={redo} disabled={!canRedo}>
+                    Redo
+                </button>
             </section>
         );
     }

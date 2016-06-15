@@ -1,6 +1,5 @@
 // Load global styles through javascript.
 import 'foundation-sites/dist/foundation.css';
-import './styles.css';
 
 import React from 'react';
 import {render} from 'react-dom';
@@ -14,6 +13,7 @@ import App from './containers/App';
 import HomePage from './containers/HomePage';
 import MoviesPage from './containers/MoviesPage';
 
+// Configure redux store for application state and history for router.
 const store = configStore();
 const history = configHistory(store);
 
