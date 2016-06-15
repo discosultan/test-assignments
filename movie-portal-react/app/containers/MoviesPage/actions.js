@@ -1,6 +1,7 @@
 import RestApi from '../../utils/RestApi';
 
 const moviePortalApi = new RestApi('http://40.113.15.185:3000/'); // TODO: DI?
+// const getMoviesPageState = getState => getState().moviesPage;
 const getMoviesPageState = getState => getState().moviesPage.present;
 
 export const requestMovies = () => (dispatch, getState) => {
