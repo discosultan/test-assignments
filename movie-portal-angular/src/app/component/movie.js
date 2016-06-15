@@ -1,12 +1,12 @@
 import angular from 'angular';
 import http from '../service/http';
 
-let movie = {
+const movie = {
     bindings: {
         id: '<'
     },
     template: require('./movie.html'),
-    controller: function (http) {        
+    controller: function (http) {
         http.get(`movies/${this.id}`).then(movie => this.movie = movie);
     }
 };

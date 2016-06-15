@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-let inArray = $filter => {
+const inArray = $filter => {
     return (list, arrayFilter, element) => {
         if (arrayFilter && arrayFilter.length > 0) {
             return $filter("filter")(list, listItem => arrayFilter.indexOf(listItem[element]) > -1);

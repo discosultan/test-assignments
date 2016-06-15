@@ -3,7 +3,7 @@ import angular from 'angular';
 import inArray from '../filter/in-array';
 import http from '../service/http';
 
-let movieList = {
+const movieList = {
     template: require('./movie-list.html'),
     controller: function (http) {
         http.get('categories').then(categories => this.categories = categories);
