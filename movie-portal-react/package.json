@@ -1,52 +1,40 @@
 {
-  "name": "movie-portal-react",
-  "version": "1.0.0",
-  "description": "CGI's assignment where the assignee is required to build a web API and an front end SPA for a movie portal. This repository only includes the front end part of the assignment implemented in React.",
-  "main": "index.js",
-  "scripts": {
-    "build": "rimraf dist && webpack --bail --progress --profile",
-    "start": "npm run server",
-    "server": "webpack-dev-server --history-api-fallback --inline --progress"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "autoprefixer": "^6.3.6",
-    "babel-core": "^6.2.1",
-    "babel-loader": "^6.2.0",
-    "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-preset-es2015": "^6.1.18",
-    "babel-preset-react": "^6.5.0",
-    "copy-webpack-plugin": "^3.0.0",
-    "css-loader": "^0.23.0",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
-    "html-webpack-plugin": "^2.17.0",
-    "postcss-loader": "^0.8.0",
-    "rimraf": "^2.5.1",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "foundation-sites": "^6.2.3",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.5",
-    "redux": "^3.5.2",
-    "redux-logger": "^2.6.1",
-    "redux-thunk": "^2.1.0",
-    "redux-undo": "^0.6.1"
-  }
+    "scripts": {
+        "start": "webpack-dev-server --history-api-fallback --inline --progress"
+    },
+    "babel": {
+        "presets": [
+            "es2015",
+            "react"
+        ],
+        "plugins": [
+            "transform-object-rest-spread"
+        ]
+    },
+    "devDependencies": {
+        "autoprefixer": "^6.3.6",
+        "babel-core": "^6.2.1",
+        "babel-loader": "^6.2.0",
+        "babel-plugin-transform-object-rest-spread": "^6.8.0",
+        "babel-preset-es2015": "^6.1.18",
+        "babel-preset-react": "^6.5.0",
+        "css-loader": "^0.23.1",
+        "file-loader": "^0.8.5",
+        "html-webpack-plugin": "^2.17.0",
+        "style-loader": "^0.13.0",
+        "webpack": "^1.13.0",
+        "webpack-dev-server": "^1.14.1"
+    },
+    "dependencies": {
+        "foundation-sites": "^6.2.3",
+        "react": "^15.1.0",
+        "react-dom": "^15.1.0",
+        "react-redux": "^4.4.5",
+        "react-router": "^2.4.1",
+        "react-router-redux": "^4.0.5",
+        "redux": "^3.5.2",
+        "redux-logger": "^2.6.1",
+        "redux-thunk": "^2.1.0",
+        "redux-undo": "^0.6.1"
+    }
 }

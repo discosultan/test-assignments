@@ -15,29 +15,6 @@ module.exports = {
     },
 
     /**
-   * Output
-   * Reference: http://webpack.github.io/docs/configuration.html#output
-   */
-    output: {
-        // Output path from the view of the page
-        // Uses webpack-dev-server in development
-        publicPath: 'http://localhost:8080/',
-
-        // Filename for entry points
-        filename: '[name].bundle.js',
-
-        // Filename for non-entry points
-        chunkFilename: '[name].bundle.js'
-    },
-
-    /**
-     * Devtool
-     * Reference: http://webpack.github.io/docs/configuration.html#devtool
-     * Type of sourcemap to use per build type
-     */
-    devtool: 'eval-source-map',
-
-    /**
      * Loaders
      * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
      * List: http://webpack.github.io/docs/list-of-loaders.html
@@ -48,30 +25,30 @@ module.exports = {
     module: {
         preLoaders: [],
         loaders: [{
-                // JS/JSX LOADER
-                // Reference: https://github.com/babel/babel-loader
-                // Transpile .js files using babel-loader
-                // Compiles ES6 and ES7 into ES5 code
-                test: /\.(js|jsx)$/,
-                loader: 'babel'
-            }, {
-                // CSS LOADER
-                // Reference: https://github.com/webpack/css-loader
-                // Allow loading css through js
-                test: /\.css$/,
-                // Reference: https://github.com/webpack/style-loader
-                // Use style-loader in development.
-                loader: 'style!css'
-            }, {
-                // ASSET LOADER
-                // Reference: https://github.com/webpack/file-loader
-                // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output
-                // Rename the file using the asset hash
-                // Pass along the updated reference to your code
-                // You can add here any file extension you want to get copied to your output
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loader: 'file'
-            }]
+            // JS/JSX LOADER
+            // Reference: https://github.com/babel/babel-loader
+            // Transpile .js files using babel-loader
+            // Compiles ES6 and ES7 into ES5 code
+            test: /\.(js|jsx)$/,
+            loader: 'babel'
+        }, {
+            // CSS LOADER
+            // Reference: https://github.com/webpack/css-loader
+            // Allow loading css through js
+            test: /\.css$/,
+            // Reference: https://github.com/webpack/style-loader
+            // Use style-loader in development.
+            loader: 'style!css'
+        }, {
+            // ASSET LOADER
+            // Reference: https://github.com/webpack/file-loader
+            // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output
+            // Rename the file using the asset hash
+            // Pass along the updated reference to your code
+            // You can add here any file extension you want to get copied to your output
+            test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+            loader: 'file'
+        }]
     },
 
     /**
