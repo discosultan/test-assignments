@@ -40,8 +40,8 @@ class UndoRedo extends React.Component {
 const mapStateToProps = state => {
     const moviesPage = state.moviesPage;
     return {
-        canUndo: moviesPage.past.length > 0,
-        canRedo: moviesPage.future.length > 0
+        canUndo: moviesPage.past && moviesPage.past.length > 0,
+        canRedo: moviesPage.future && moviesPage.future.length > 0
     };
 };
 

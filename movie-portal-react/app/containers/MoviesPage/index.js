@@ -47,8 +47,7 @@ class MoviesPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    // state = state.moviesPage;
-    state = state.moviesPage.present;
+    state = state.moviesPage.present || state.moviesPage;
     const { movies, categories, selectedMovieDetails, searchFilter, categoryFilter } = state;
     return {
         movies, categories, searchFilter, categoryFilter, selectedMovieDetails,

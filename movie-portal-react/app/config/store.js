@@ -4,8 +4,8 @@ import createLogger from 'redux-logger';
 import {routerReducer} from 'react-router-redux';
 import undoable, {distinctState} from 'redux-undo';
 
-import appReducer from '../containers/App/reducers';
-import moviesPageReducer from '../containers/MoviesPage/reducers';
+import appReducer from '../containers/App/reducer';
+import moviesPageReducer from '../containers/MoviesPage/reducer';
 
 export default function configStore() {
     const rootReducer = combineReducers({

@@ -1,11 +1,18 @@
 import RestApi from '../../utils/RestApi';
 
-// Dependency injection should rather be handled through
+/* Sync actions - handled directly by redux store */
+
+export const setSearchFilter = filter => ({ type: 'SET_SEARCH_FILTER', filter });
+export const setCategoryFilter = filter => ({ type: 'SET_CATEGORY_FILTER', filter });
+export const receiveMovies = movies => ({ type: 'RECEIVE_MOVIES', movies });
+export const receiveCategories = categories => ({ type: 'RECEIVE_CATEGORIES', categories });
+export const receiveMovieDetails = movieDetails => ({ type: 'RECEIVE_MOVIE_DETAILS', movieDetails });
+
+/* Async actions - require middleware (redux-thunk, redux-sagas, etc.) */
+
+// TODO: Dependency injection should rather be handled through
 // redux store middleware.
 const moviePortalApi = new RestApi('http://40.113.15.185:3000/');
-
-// const getMoviesPageState = getState => getState().moviesPage;
-const getMoviesPageState = getState => getState().moviesPage.present;
 
 export const requestMovies = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIES' });
@@ -21,11 +28,6 @@ export const requestMovies = () => (dispatch, getState) => {
     }
 }
 
-export const receiveMovies = movies => ({
-    type: 'RECEIVE_MOVIES',
-    movies
-});
-
 export const requestMovieDetails = id => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_MOVIE_DETAILS', id: id });
     const existingMovieDetails = getMoviesPageState(getState).movieDetailsMap[id];
@@ -36,12 +38,6 @@ export const requestMovieDetails = id => (dispatch, getState) => {
                       .then(movieDetails => dispatch(receiveMovieDetails(movieDetails)));
     }
 }
-
-export const receiveMovieDetails = movieDetails => ({
-    type: 'RECEIVE_MOVIE_DETAILS',
-    movieDetails
-});
-
 
 export const requestCategories = () => (dispatch, getState) => {
     dispatch({ type: 'REQUEST_CATEGORIES' });
@@ -54,17 +50,9 @@ export const requestCategories = () => (dispatch, getState) => {
     }
 }
 
-export const receiveCategories = categories => ({
-    type: 'RECEIVE_CATEGORIES',
-    categories
-});
+/* Helpers */
 
-export const setSearchFilter = filter => ({
-    type: 'SET_SEARCH_FILTER',
-    filter
-});
-
-export const setCategoryFilter = filter => ({
-    type: 'SET_CATEGORY_FILTER',
-    filter
-});
+function getMoviesPageState(getState) {
+    const state = getState();
+    return state.moviesPage.present || state.moviesPage;
+}

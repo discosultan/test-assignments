@@ -1,20 +1,20 @@
-import {combineReducers} from 'redux';
+const initialState = {
+    numLoading: 0
+};
 
-function numLoading(state = 0, action) {
+function app(state = initialState, action) {
     switch (action.type) {
         case 'REQUEST_MOVIES':
         case 'REQUEST_MOVIE_DETAILS':
         case 'REQUEST_CATEGORIES':
-            return state + 1;
+            return { ...state, numLoading: state.numLoading + 1 }
         case 'RECEIVE_MOVIES':
         case 'RECEIVE_MOVIE_DETAILS':
         case 'RECEIVE_CATEGORIES':
-            return state - 1;
+            return { ...state, numLoading: state.numLoading - 1 }
         default:
             return state;
     }
 }
 
-export default combineReducers({
-    numLoading
-});
+export default app;
