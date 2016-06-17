@@ -31,15 +31,10 @@ class MoviesPage extends React.Component {
                 </section>
 
                 <section className="row">
-                  <section className="medium-6 columns">
-                      <MovieList value={filteredMovies} onSelect={requestMovieDetails} />
-                  </section>
-
-                  <section className="medium-6 columns">
-                      {!!selectedMovieDetails &&
-                          <MovieDetails value={selectedMovieDetails} />
-                      }
-                  </section>
+                    <MovieList className="medium-6 columns" value={filteredMovies} onSelect={requestMovieDetails} />
+                    {!!selectedMovieDetails &&
+                        <MovieDetails className="medium-6 columns" value={selectedMovieDetails} />
+                    }
                 </section>
             </section>
         );

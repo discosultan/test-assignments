@@ -11,10 +11,10 @@ export default function configStore() {
     const rootReducer = combineReducers({
         routing: routerReducer, // Add the reducer to your store on the `routing` key.
         app: appReducer,
-        // moviesPage: moviesPageReducer
+        moviesPage: moviesPageReducer
         // To make a state change undoable, simply wrap it using `undoable` helper.
         // The `distinctState` filter defines only to undo distinct changes to the state.
-        moviesPage: undoable(moviesPageReducer, { filter: distinctState() })
+        // moviesPage: undoable(moviesPageReducer, { filter: distinctState() })
     });
     const initialState = undefined;
     const middleware = applyMiddleware(thunk, createLogger());

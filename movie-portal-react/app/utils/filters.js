@@ -1,7 +1,5 @@
 export function byArray(selector, filter) {
-    return item => filter.length
-        ? filter.indexOf(selector(item)) >= 0
-        : true;
+    return item => !filter.length || filter.indexOf(selector(item)) >= 0;
 }
 
 export function bySearchString(selector, filter) {
