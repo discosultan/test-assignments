@@ -8,7 +8,7 @@ import MovieList from '../../components/MovieList';
 import MovieDetails from '../../components/MovieDetails';
 
 import * as actions from './actions';
-import { byArray, bySearchString } from '../../utils/filters';
+import { filterMovies } from './reducer';
 
 class MoviesPage extends React.Component {
     componentDidMount() {
@@ -22,6 +22,7 @@ class MoviesPage extends React.Component {
             filteredMovies, categories, selectedMovieDetails, requestMovieDetails,
             searchFilter, categoryFilter, setSearchFilter, setCategoryFilter
         } = this.props;
+
         return (
             <section>
                 <section className="row columns">
@@ -32,9 +33,7 @@ class MoviesPage extends React.Component {
 
                 <section className="row">
                     <MovieList className="medium-6 columns" value={filteredMovies} onSelect={requestMovieDetails} />
-                    {!!selectedMovieDetails &&
-                        <MovieDetails className="medium-6 columns" value={selectedMovieDetails} />
-                    }
+                    <MovieDetails className="medium-6 columns" value={selectedMovieDetails} />
                 </section>
             </section>
         );
@@ -43,11 +42,11 @@ class MoviesPage extends React.Component {
 
 function mapStateToProps(state) {
     state = state.moviesPage.present || state.moviesPage;
-    const { movies, categories, selectedMovieDetails, searchFilter, categoryFilter } = state;
+    const { categories, selectedMovieDetails, searchFilter, categoryFilter } = state;
     return {
-        movies, categories, searchFilter, categoryFilter, selectedMovieDetails,
-        filteredMovies: movies.filter(byArray(movie => movie.category, categoryFilter))
-                              .filter(bySearchString(movie => movie.title, searchFilter))
+        categories, searchFilter, categoryFilter,
+        selectedMovieDetails: selectedMovieDetails,
+        filteredMovies: filterMovies(state)
     };
 }
 

@@ -3,7 +3,7 @@ import React from 'react';
 export default class MovieDetails extends React.Component {
     render() {
         const { value, className } = this.props;
-        return (
+        return (value &&
             <section className={className}>
                 <h1>{value.title}</h1>
                 <p><b>Category</b>: {value.category}</p>
