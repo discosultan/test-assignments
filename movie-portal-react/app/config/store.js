@@ -6,7 +6,8 @@ import undoable, {distinctState} from 'redux-undo';
 import appReducer from '../containers/App/reducer';
 import moviesPageReducer from '../containers/MoviesPage/reducer';
 
-import createRestApi from '../utils/restApiMiddleware';
+import RestApi from '../utils/CachingRestApi';
+import createApi from '../utils/apiMiddleware';
 
 export default function configStore() {
     const rootReducer = combineReducers({
@@ -18,7 +19,10 @@ export default function configStore() {
         // moviesPage: undoable(moviesPageReducer, { filter: distinctState() })
     });
     const initialState = undefined;
-    const middleware = applyMiddleware(createRestApi('http://40.113.15.185:3000/'), createLogger());
+    const middleware = applyMiddleware(
+        createApi(new RestApi('http://40.113.15.185:3000/')),
+        createLogger()
+    );
 
     return createStore(
         rootReducer,

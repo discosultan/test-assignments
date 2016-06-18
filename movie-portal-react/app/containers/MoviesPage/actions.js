@@ -1,13 +1,25 @@
 export const setSearchFilter = filter => ({ type: 'SET_SEARCH_FILTER', filter });
 export const setCategoryFilter = filter => ({ type: 'SET_CATEGORY_FILTER', filter });
 
-// The actions below are preprocessed by our restApiMiddleware that handles the
-// async nature of these requests. Resource uri defaults to type suffix and method to GET.
-export const requestMovies = () => ({
-    type: 'REQUEST_MOVIES',
-    // onReceived: (result, dispatch) => {
-    //     if (result.length) dispatch(requestMovieDetails(result[0].id));
-    // }
-}); // uri defaults to 'movies'
-export const requestCategories = () => ({ type: 'REQUEST_CATEGORIES' }); // uri defaults to 'categories'
-export const requestMovieDetails = id => ({ type: 'REQUEST_MOVIE_DETAILS', uri: `movies/${id}` });
+export const requestCategories = () => (api, dispatch) => {
+    dispatch({ type: 'REQUEST_CATEGORIES' });
+    api.get('categories').then(result => dispatch({ type: 'RECEIVE_CATEGORIES', result }));
+};
+
+export const requestMovieDetails = id => (api, dispatch) => {
+    dispatch({ type: 'REQUEST_MOVIE_DETAILS', id });
+    api.get(`movies/${id}`).then(result => dispatch({ type: 'RECEIVE_MOVIE_DETAILS', result }));
+};
+
+export const requestMovies = () => (api, dispatch, getState) => {
+    dispatch({ type: 'REQUEST_MOVIES' });
+    api.get('movies').then(result => {
+        dispatch({ type: 'RECEIVE_MOVIES', result });
+
+        // If we received any movie and no movie is selected, select first!
+        let state = getState();
+        state = state.moviesPage.present || state.moviesPage;
+        if (result.length && !state.selectedMovieDetails)
+            dispatch(requestMovieDetails(result[0].id));
+    });
+};
