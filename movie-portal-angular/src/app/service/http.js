@@ -24,7 +24,7 @@ class Http {
         return promise.then(
             response => {
                 this.numLoading--;
-                let responseData = response.data;
+                const responseData = response.data;
                 this.$log.debug(`Status code ${response.status}`);
                 this.$log.debug(responseData);
                 return responseData;

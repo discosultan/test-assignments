@@ -10,7 +10,9 @@
     </section>
 
     <section ng-repeat="movie in $ctrl.movies | filter:$ctrl.nameFilter | inArray:$ctrl.categoryFilter:'category'">
-        <a ui-sref="movie({id:movie.id})"><h1>{{movie.title}}</h1></a>
+        <a href="javascript:void(0)" ng-click="$ctrl.onselect({ $event: movie })">
+            <h1>{{movie.title}}</h1>
+        </a>
         <p><b>Category</b>: {{movie.category}}</p>
     </section>
 </section>

@@ -1,16 +1,12 @@
 import angular from 'angular';
-import http from '../service/http';
 
-const movie = {
+const movie = {    
     bindings: {
-        id: '<'
+        value: '<'
     },
-    template: require('./movie.html'),
-    controller: function (http) {
-        http.get(`movies/${this.id}`).then(movie => this.movie = movie);
-    }
+    template: require('./movie.html')    
 };
 
-export default angular.module('component.movie', [http])
+export default angular.module('component.movie', [])
     .component('movie', movie)
     .name;
