@@ -1,13 +1,13 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --inline --progress"
+    "start": "webpack-dev-server --history-api-fallback --inline --progress",
+    "test": "karma start test/karma.conf.js"
   },
   "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "presets": ["es2015"]
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.8",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
@@ -15,6 +15,11 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.17.0",
+    "jasmine-core": "^2.5.0",
+    "karma": "^1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-webpack": "^1.8.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "webpack": "^1.13.0",
