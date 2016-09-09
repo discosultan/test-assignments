@@ -15,7 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'unit/specs.js', watched: false }
+      { pattern: 'specs.js', watched: false }
     ],
 
 
@@ -27,11 +27,11 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {      
-      'unit/specs.js': ['webpack']
+      'specs.js': ['webpack']
     },
 
 
-    webpack: require('../webpack.config'),
+    webpack: require('../../webpack.config'),
 
 
     webpackMiddleware: {
