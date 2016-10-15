@@ -16,7 +16,7 @@ export const requestMovies = () => (api, dispatch, getState) => {
     api.get('movies').then(result => {
         dispatch({ type: 'RECEIVE_MOVIES', result });
 
-        // If we received any movie and no movie is selected, select first!
+        // If we received any movies and no movie is selected, select the first one!
         let state = getState();
         state = state.moviesPage.present || state.moviesPage;
         if (result.length && !state.selectedMovieDetails)

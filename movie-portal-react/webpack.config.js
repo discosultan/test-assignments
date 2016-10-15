@@ -11,7 +11,7 @@ module.exports = {
    * Reference: http://webpack.github.io/docs/configuration.html#entry
    */
     entry: {
-        app: './app'
+        app: './src'
     },
 
     /**
@@ -61,7 +61,7 @@ module.exports = {
         // Reference: https://github.com/ampedandwired/html-webpack-plugin
         // Render index.html
         new HtmlWebpackPlugin({
-            template: './app/index.html',
+            template: './src/index.html',
             inject: 'body'
         }),
         new webpack.HotModuleReplacementPlugin()
@@ -73,7 +73,7 @@ module.exports = {
      * Reference: http://webpack.github.io/docs/webpack-dev-server.html
      */
     devServer: {
-        contentBase: './app',
+        contentBase: './src',
         stats: 'minimal',
         // hot: true
     }
