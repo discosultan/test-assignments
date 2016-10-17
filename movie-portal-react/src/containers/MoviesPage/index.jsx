@@ -2,7 +2,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import MultiSelect from '../../components/MultiSelect';
 import MovieList from '../../components/MovieList';
 import MovieDetails from '../../components/MovieDetails';
 
@@ -24,8 +23,8 @@ class MoviesPage extends React.Component {
 
         return (
             <section>
-                // == TOP FILTERING SECTION ==
-                // TODO: This section is a good candidate for another component.
+                {/* == TOP FILTERING SECTION == */}
+                {/* TODO: This section is a good candidate for another component. */}
                 <section className="row columns">
                     <label><b>Search:</b>
                         <input type="text" value={searchFilter} onChange={event => setSearchFilter(event.target.value)} />
@@ -47,7 +46,7 @@ class MoviesPage extends React.Component {
                     </label>
                 </section>
 
-                // == BOTTOM MOVIE LIST AND DETAILS SECTION ==
+                {/* == BOTTOM MOVIE LIST AND DETAILS SECTION == */}
                 <section className="row">
                     <MovieList className="medium-6 columns" value={filteredMovies} onSelect={requestMovieDetails} />
                     <MovieDetails className="medium-6 columns" value={selectedMovieDetails} />

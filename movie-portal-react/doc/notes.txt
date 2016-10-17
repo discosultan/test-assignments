@@ -1,0 +1,10 @@
+- webpack
+- react
+    - jsx syntax
+    - className, key
+    - repeating
+- redux
+- logging
+- react dev tools
+- hot reload
+- undo/redo

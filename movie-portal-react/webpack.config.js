@@ -68,6 +68,14 @@ module.exports = {
     ],
 
     /**
+     * Automatic file resolution
+     * Reference: https://webpack.github.io/docs/configuration.html#resolve
+     */
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
+
+    /**
      * Dev server configuration
      * Reference: http://webpack.github.io/docs/configuration.html#devserver
      * Reference: http://webpack.github.io/docs/webpack-dev-server.html
