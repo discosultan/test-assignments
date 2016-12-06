@@ -1,0 +1,10 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitUseStrict": true,
+        "lib": ["es2015.promise", "es5"]
+    }
+}
