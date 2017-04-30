@@ -1,0 +1,30 @@
+<h1 id="assignment-create-a-stopwatch-service">Assignment: Create a stopwatch service</h1>
+<ol style="list-style-type: decimal">
+<li>Create an Azure App Service with Owin and Web API, that implements the API specification below.
+<ul>
+<li>Timer states should be stored in Azure Table Storage.</li>
+<li>Limit access to the API by:
+<ul>
+<li>requiring Basic authentication on <code>POST /api/stopwatch</code>. A user should only be able to reset a stopwatch with a name she has reset earlier, or one that does not exist yet.</li>
+<li>also requiring authentication on <code>GET /api/stopwatch</code>, but with a twist: client should be able to either authenticate with Basic Authentication <em>or</em> with an API key on <code>GET /api/stopwatch</code> (i.e., without specifying a user identity). The API key should be submitted by client in the Authorization header.</li>
+</ul></li>
+</ul></li>
+<li>Create a SignalR hub, that supports the same functionality as the REST API. It should support the same authentication/authorization pattern, although authentication does not necessarily have to be through the Authentication header. Furthermore, the server should send the client a stopwatch update at least every second.</li>
+</ol>
+<h1 id="stopwatch-api-spec">Stopwatch API spec</h1>
+<h2 id="post-apistopwatch">POST /api/stopwatch</h2>
+<p>Set / reset a stopwatch.</p>
+<p>Request body:</p>
+<pre><code>{
+   &quot;name&quot;: [string, stopwatch name]
+}</code></pre>
+<h2 id="get-apistopwatchuser">GET /api/stopwatch/[user]</h2>
+<p>Returns the elapsed time for each stopwatch for given user, in milliseconds.</p>
+<p>Response body:</p>
+<pre><code>{
+    [string, stopwatch name]: [int, elapsed milliseconds],
+    [string, stopwatch name]: [int, elapsed milliseconds],
+    [string, stopwatch name]: [int, elapsed milliseconds],
+    [string, stopwatch name]: [int, elapsed milliseconds],
+    ...
+}</code></pre>
