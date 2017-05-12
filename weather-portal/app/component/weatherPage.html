@@ -1,0 +1,20 @@
+<!-- 
+    We should probably add a more sophisticated layout here.
+    Currently all the cards are simply stacked horizontally.
+
+    Styles are defined together with their corresponding components. Since
+    these are going to be global, they are named based on BEM guidelines
+    to scope them.
+-->
+
+<style>
+    .weather-page__element {
+        padding: 4px;
+    }
+</style>
+
+<section class="mdl-grid">
+    <div ng-repeat="value in $ctrl.weatherList" class="weather-page__element">
+        <weather-card value="value" on-request-forecast="$ctrl.listForecastForCity">
+    </div>
+</section>

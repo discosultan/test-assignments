@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--
+        Vendor libraries are loaded from external sources for simplicity.
+        Our app is bundled together using WebPack mainly in order to be able to
+        declare Angular component templates as external html files. Otherwise,
+        we would have to resort to inline string based templates since using
+        component's templateUrl is complicated (due to security reasons) without
+        serving the app from a web server.
+        Scripts are loaded in the head section since there is no point in
+        deferring them. We can't display anything without having fully loaded
+        our app anyway. Material Design Lite's JavaScript could benefit from
+        'async' attribute.
+    -->
+    <!-- Import Material Design Lite -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Custom style overrides for Material Design Lite -->
+    <link rel="stylesheet" href="mdl.override.css">
+    <!-- Import Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- Import our weather app bundle -->
+    <script src="app.bundle.js"></script>
+
+    <!-- 
+        No localization is applied in this sample but ideally all user-facing
+        strings would be localized.
+    -->
+    <title>Weather Portal</title>
+</head>
+
+<body>
+    <!-- 
+        If we were using more than a single page/view, we would use something
+        like ui-router to manage client side routing and simply include
+        <ui-view></ui-view> here, for example.
+    -->
+    <weather-page></weather-page>
+</body>
+
+</html>

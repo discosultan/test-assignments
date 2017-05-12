@@ -1,0 +1,64 @@
+<style>
+    .weather-card.mdl-card {
+        width: 360px;
+    }
+    .weather-card__forecast {
+        max-height: 0;
+        transition: max-height 1s ease;
+        overflow: hidden;
+    }
+    .weather-card__forecast--expanded {
+        max-height: 425px;
+    }
+</style>
+
+<div class="weather-card mdl-card mdl-shadow--2dp">
+    <!-- City name -->
+    <div class="mdl-card__title">
+        <h2 class="mdl-color-text--accent">{{::$ctrl.value.name}}</h2>
+    </div>
+
+    <!-- Current weather data -->
+    <div class="mdl-card__supporting-text">
+        Temperature: {{::$ctrl.value.temperature | kelvinToCelsius | number:2 }} C
+        Wind: <wind-widget value="$ctrl.value.wind"></wind-widget>
+    </div>
+
+    <!-- Expandable forecast section -->
+    <div class="weather-card__forecast"
+         ng-class="{'weather-card__forecast--expanded': $ctrl.expanded}">
+        <table class="mdl-data-table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Forecast</th>
+                    <th>Temp</th>
+                    <th>Wind</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="value in $ctrl.forecast">
+                    <td class="mdl-data-table__cell">{{::value.date | dateToHourMinute}}</td>
+                    <td><img ng-src="{{::$ctrl.value.iconUrl}}" /></td>
+                    <td>{{::value.temperature | kelvinToCelsius | number:2 }} C</td>
+                    <td><wind-widget value="value.wind"></wind-widget></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Forecast expansion button -->
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+           ng-click="$ctrl.expand()">
+            Forecast
+            <span ng-if="!$ctrl.expanded">&#x25bc;</span>
+            <span ng-if="$ctrl.expanded">&#x25b2;</span>
+        </a>
+    </div>
+
+    <!-- Top-right weather icon -->
+    <div class="mdl-card__menu">
+        <img ng-src="{{::$ctrl.value.iconUrl}}" />
+    </div>
+</div>

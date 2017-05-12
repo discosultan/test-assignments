@@ -1,0 +1,13 @@
+{
+  "name": "weather-portal",
+  "version": "1.0.0",
+  "scripts": {
+    "bundle": "webpack"
+  },
+  "author": "Jaanus Varus",
+  "license": "MIT",
+  "devDependencies": {
+    "html-loader": "^0.4.5",
+    "webpack": "^2.4.1"
+  }
+}

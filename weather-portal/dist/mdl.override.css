@@ -1,0 +1,10 @@
+/* Custom style override for Material Design Lite */
+
+.mdl-data-table {
+    width: 100%;
+}
+
+.mdl-data-table th,
+.mdl-data-table td {
+    text-align: center;
+}

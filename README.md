@@ -11,3 +11,4 @@ A collection of various test assignments (with solutions) gathered from differen
 - **museum** - CGI's assignment where given a range of visiting times, the assignee is required to figure out an algorithm for finding all the periods of maximum number of concurrent visitors in a museum.
 - **parking-house** - Finestmedia's assignment where the assignee is required to create a parking house system that conforms to specified rules.
 - **stopwatch** - An assignment where a Web API and SignalR based stopwatch service needs to created with Azure Table Storage used in backend.
+- **weather-portal** - An assignment for creating an Angular SPA for weather forecasts using openweathermap.org API.

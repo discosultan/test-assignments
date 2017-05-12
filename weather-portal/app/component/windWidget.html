@@ -1,0 +1,14 @@
+<style>
+    .wind-widget__arrow {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background: url('./img/arrow.svg') center / cover;
+    }
+</style>
+
+<span>
+    {{::$ctrl.value.speed}} m/s
+    &nbsp;
+    <span class="wind-widget__arrow" style="transform: rotate({{$ctrl.value.direction}}deg)"></span>
+</span>
