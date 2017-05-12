@@ -5,6 +5,8 @@ using SimpleInjector;
 
 namespace Varus.Stopwatch.Web.Infrastructure.SignalR
 {
+    // An integration between a SimpleInjector dependency container and SignalR
+    // dependency resolver.
     public class SimpleInjectorSignalRDependencyResolver : DefaultDependencyResolver
     {
         private readonly Container _container;

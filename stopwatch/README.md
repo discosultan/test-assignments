@@ -1,6 +1,6 @@
 # Stopwatch
 
-An online service that enables to start and view stopwatches through ASp.NET Web API or SignalR.
+An online service that enables to start and view stopwatches through ASP.NET Web API or SignalR.
 
 Requirements are specified in [the API spec](assignment-azure.html).
 
@@ -30,5 +30,4 @@ By default, in-memory data storage is used. This can be swapped out in OWIN star
 - [Varus.Stopwatch](Src/Varus.Stopwatch) - Core domain library containing the logic of calculating elapsed time for a stopwatch.
 - [Varus.Stopwatch.AzureTableStorage](Src/Varus.Stopwatch.AzureTableStorage) - Data access supporting Azure Table Storage for keeping track of stopwatch times.
 - [Varus.Stopwatch.Web](Src/Varus.Stopwatch.Web) - ASP.NET Web API and SignalR providing a user interface for managing stopwatches.
-- [Varus.Stopwatch.Web.Tests](Src/Varus.Stopwatch.Web.Tests) - Integration tests for the web userface to assure correctness of authentication and functional requirements.
-
+- [Varus.Stopwatch.Web.Tests](Src/Varus.Stopwatch.Web.Tests) - xUnit integration tests for the web interface to assure correctness of authentication and functional requirements.

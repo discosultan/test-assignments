@@ -20,6 +20,7 @@ namespace Varus.Stopwatch.Web.Infrastructure
         public static Task<IEnumerable<Claim>> APIKey(string key)
         {
             // Any API key is valid.
+            // We don't return a user claim since no API key operations require it.
             return Task.FromResult(new[]
             {
                 new Claim("AuthorizationType", "API-Key")

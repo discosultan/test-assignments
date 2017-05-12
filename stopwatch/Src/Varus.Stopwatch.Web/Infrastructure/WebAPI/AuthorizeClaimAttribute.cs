@@ -6,6 +6,10 @@ using System.Web.Http.Controllers;
 
 namespace Varus.Stopwatch.Web.Infrastructure.WebAPI
 {
+    // A Web API controller filter requiring at least one of the specified
+    // authorization type claims.
+    // For example, specifying 'Basic' and 'API-Key' means that the user is
+    // authorized for the action if any of those claims is present.
     public class AuthorizeClaimAttribute : AuthorizeAttribute
     {
         private readonly string[] _allowedAuthenticationTypes;

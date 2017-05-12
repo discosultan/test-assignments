@@ -9,6 +9,8 @@ using System.Web.Http.Metadata;
 
 namespace Varus.Stopwatch.Web.Infrastructure.WebAPI
 {
+    // This attribute can be used on Web API controller method parameters to
+    // indicate the the parameter should be automaticall extracted from user claims.
     public class FromClaimAttribute : ParameterBindingAttribute
     {
         public override HttpParameterBinding GetBinding(HttpParameterDescriptor parameter)

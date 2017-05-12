@@ -29,17 +29,21 @@ namespace Varus.Stopwatch.Web.Hubs
         public StopwatchHub(IStopwatchService service, IObservable<Unit> elapsedInterval)
         {
             _service = service;
+
+            // A timer for periodically broadcasting elapsed stopwatch times is abstracted
+            // in order to ease testing.
             _elapsedInterval = elapsedInterval;
         }
 
         [AuthorizeClaim("Basic", "API-Key")]
         public Task GetAsync(string user)
         {
-            // Periodically start broadcasting elapsed times for all user stopwatches.
+            // Periodically start broadcasting elapsed times to the user for all his/her stopwatches.
             var subscription = _elapsedInterval
                 .SelectMany(_ => _service.MapElapsedTimesByNameAsync(user))
                 .Subscribe(result => Clients.Caller.BroadcastElapsed(result));
 
+            // Store the timer subscription in order to dispose of it when the connection disconnects.
             var subscriptions = GetOrAddSubscriptions(Context.ConnectionId);
             subscriptions.Add(subscription);
 
@@ -56,6 +60,7 @@ namespace Varus.Stopwatch.Web.Hubs
 
         public override Task OnDisconnected(bool stopCalled)
         {
+            // Dispose of any timer subscriptions associated with the connection.
             if (_elapsedSubscriptions.TryRemove(Context.ConnectionId, out var subscriptions))
             {
                 foreach (var subscription in subscriptions)

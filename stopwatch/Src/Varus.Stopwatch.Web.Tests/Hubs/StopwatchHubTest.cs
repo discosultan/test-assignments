@@ -6,8 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.Owin.Hosting;
-using Varus.Stopwatch.Web.Hubs;
 using Xunit;
+using Varus.Stopwatch.Web.Hubs;
 
 namespace Varus.Stopwatch.Web.Tests.Hubs
 {
@@ -20,7 +20,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
             await _connection.Start();
             await Assert.ThrowsAsync(
                 typeof(InvalidOperationException),
-                () => _proxy.Invoke("GetAsync", "testuser"));
+                () => _proxy.Invoke(nameof(StopwatchHub.GetAsync), "testuser"));
         }
 
         [Fact]
@@ -28,7 +28,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
         {
             _connection.Headers.Add("Authorization", BasicAuth);
             await _connection.Start();
-            await _proxy.Invoke("GetAsync", "testuser");
+            await _proxy.Invoke(nameof(StopwatchHub.GetAsync), "testuser");
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
         {
             _connection.Headers.Add("Authorization", APIKeyAuth);
             await _connection.Start();
-            await _proxy.Invoke("GetAsync", "testuser");
+            await _proxy.Invoke(nameof(StopwatchHub.GetAsync), "testuser");
         }
 
 
@@ -46,7 +46,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
             await _connection.Start();
             await Assert.ThrowsAsync(
                 typeof(InvalidOperationException),
-                () => _proxy.Invoke("PostAsync", "testname"));
+                () => _proxy.Invoke(nameof(StopwatchHub.PostAsync), "testname"));
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
             await _connection.Start();
             await Assert.ThrowsAsync(
                 typeof(InvalidOperationException),
-                () => _proxy.Invoke("PostAsync", "testname"));
+                () => _proxy.Invoke(nameof(StopwatchHub.PostAsync), "testname"));
         }
 
         [Fact]
@@ -66,7 +66,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
             await _connection.Start();
             await Assert.ThrowsAsync(
                 typeof(InvalidOperationException),
-                () => _proxy.Invoke("PostAsync"));
+                () => _proxy.Invoke(nameof(StopwatchHub.PostAsync)));
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
         {
             _connection.Headers.Add("Authorization", BasicAuth);
             await _connection.Start();
-            await _proxy.Invoke("PostAsync", "testname");
+            await _proxy.Invoke(nameof(StopwatchHub.PostAsync), "testname");
         }
 
 
@@ -96,8 +96,8 @@ namespace Varus.Stopwatch.Web.Tests.Hubs
                 countdownEvent.Signal();
             });
 
-            await _proxy.Invoke("PostAsync", "testname");
-            await _proxy.Invoke("GetAsync", "testuser");
+            await _proxy.Invoke(nameof(StopwatchHub.PostAsync), "testname");
+            await _proxy.Invoke(nameof(StopwatchHub.GetAsync), "testuser");
 
             for (int i = 0; i < expectedReceiveCount; i++)
                 Subject.OnNext(Unit.Default);
