@@ -23,7 +23,6 @@ module.exports = {
 
     // Initialize module
     module: {
-        preLoaders: [],
         loaders: [{
             // JS/JSX LOADER
             // Reference: https://github.com/babel/babel-loader
@@ -31,7 +30,7 @@ module.exports = {
             // Compiles ES6 and ES7 into ES5 code
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            loaders: ['react-hot', 'babel']
+            loaders: ['react-hot-loader', 'babel-loader']
         }, {
             // CSS LOADER
             // Reference: https://github.com/webpack/css-loader
@@ -39,7 +38,7 @@ module.exports = {
             test: /\.css$/,
             // Reference: https://github.com/webpack/style-loader
             // Use style-loader in development.
-            loader: 'style!css'
+            loader: 'style-loader!css-loader'
         }, {
             // ASSET LOADER
             // Reference: https://github.com/webpack/file-loader
@@ -48,7 +47,7 @@ module.exports = {
             // Pass along the updated reference to your code
             // You can add here any file extension you want to get copied to your output
             test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-            loader: 'file'
+            loader: 'file-loader'
         }]
     },
 
@@ -72,7 +71,7 @@ module.exports = {
      * Reference: https://webpack.github.io/docs/configuration.html#resolve
      */
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
 
     /**

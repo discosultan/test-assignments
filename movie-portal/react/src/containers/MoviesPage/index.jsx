@@ -25,7 +25,7 @@ class MoviesPage extends React.Component {
             <section>
                 {/* == TOP FILTERING SECTION == */}
                 {/* TODO: This section is a good candidate for another component. */}
-                <section className="row columns">
+                <section className="row column">
                     <label><b>Search:</b>
                         <input type="text" value={searchFilter} onChange={event => setSearchFilter(event.target.value)} />
                     </label>
@@ -48,8 +48,8 @@ class MoviesPage extends React.Component {
 
                 {/* == BOTTOM MOVIE LIST AND DETAILS SECTION == */}
                 <section className="row">
-                    <MovieList className="medium-6 columns" value={filteredMovies} onSelect={requestMovieDetails} />
-                    <MovieDetails className="medium-6 columns" value={selectedMovieDetails} />
+                    <MovieList className="medium-6 column" value={filteredMovies} onSelect={requestMovieDetails} />
+                    <MovieDetails className="medium-6 column" value={selectedMovieDetails} />
                 </section>
             </section>
         );
