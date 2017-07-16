@@ -1,0 +1,38 @@
+/* Custom style override for Material Design Lite */
+
+.mdl-data-table {
+    width: 100%;
+}
+.mdl-data-table th,
+.mdl-data-table td {
+    text-align: center;
+}
+
+/* WeatherPage */
+
+.weather-page__element {
+    padding: 4px;
+}
+
+/* WeatherCard */
+
+.weather-card.mdl-card {
+    width: 360px;
+}
+.weather-card__forecast {
+    max-height: 0;
+    transition: max-height 1s ease;
+    overflow: hidden;
+}
+.weather-card__forecast--expanded {
+    max-height: 425px;
+}
+
+/* WindWidget */
+
+.wind-widget__arrow {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background: url('./img/arrow.svg') center / cover;
+}
