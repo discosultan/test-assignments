@@ -10,5 +10,6 @@ A collection of various test assignments (with solutions) gathered from differen
 - **movie-portal** - CGI's assignment where the assignee is required to build a web API and a front end SPA for a movie portal. This repository only includes the front end part of the assignment implemented using Angular and React frameworks. 
 - **museum** - CGI's assignment where given a range of visiting times, the assignee is required to figure out an algorithm for finding all the periods of maximum number of concurrent visitors in a museum.
 - **parking-house** - Finestmedia's assignment where the assignee is required to create a parking house system that conforms to specified rules.
-- **stopwatch** - An assignment where a Web API and SignalR based stopwatch service needs to created with Azure Table Storage used in backend.
-- **weather-portal** - An assignment for creating a SPA for weather forecasts using openweathermap.org API. Includes Angular and React implementations.
+- **stopwatch** - an assignment where a Web API and SignalR based stopwatch service needs to created with Azure Table Storage used in backend.
+- **trawiller** - an assignment for designing a Twitter-like software system.
+- **weather-portal** - an assignment for creating a SPA for weather forecasts using openweathermap.org API. Includes Angular and React implementations.
