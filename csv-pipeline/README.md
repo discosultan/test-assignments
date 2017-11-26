@@ -11,15 +11,17 @@ Products backoffice for PRONOODLE INC.
 
 - **src**
   - **Pronoodle.Products** - Core library including business logic around products.
-  - **Pronoodle.Products.Web** - Web interface for importing and viewing products. Communication is happening over websockets. Each file upload is performed on a dedicated socket. Product overview is live and streamed over another dedicated socket. Reconnection is not implemented.
+  - **Pronoodle.Products.Web** - Web interface for importing and viewing products. Communication is happening over websockets. Each file upload is performed on a dedicated socket. Product overview is live and streamed over another dedicated socket. Reconnection is not implemented. Number of entries displayed on the UI is limited and there is no way to run out memory there through large CSV files. Server uses an in-memory product repository and therefore can run out of memory.
 - **tests**
-  - **Pronoodle.Products.Integration** - Integration tests testing happy flow for each websocket endpoint.
+  - **Pronoodle.Products.Integration** - Integration tests test happy flow for each websocket endpoint.
 
 ## Getting started
 
 1. Start **Pronoodle.Products.Web** server. Default port is 5000.
 
 2. In browser, navigate to `http://localhost:5000/`.
+
+3. Try import a products `.csv` file (not included in this repo).
 
 ## Assignment description
 

@@ -13,13 +13,13 @@ namespace Pronoodle.Products
     /// </summary>
     public class InMemoryProductRepository : IProductRepository
     {
-        const int StreamAllChunkSize = 2;
+        const int StreamChunkSize = 2; // Must be > 0.
         static readonly TimeSpan StreamAllChunkDelay = TimeSpan.FromMilliseconds(20);
 
         static readonly TimeSpan AddOrUpdateDelay = TimeSpan.FromMilliseconds(200);
 
         readonly Dictionary<string, Product> _repository = new Dictionary<string, Product>();
-        readonly ISubject<IEnumerable<Product>> _subject = new Subject<IEnumerable<Product>>();
+        readonly Subject<IEnumerable<Product>> _subject = new Subject<IEnumerable<Product>>();
         readonly object _syncRoot = new object();
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Pronoodle.Products
                     // as write access to subject to enable parallel concurrency.
                     lock (_syncRoot)
                     // Stream in chunks.
-                    foreach (var chunk in Chunkify(_repository.Values.Reverse()))
+                    foreach (var chunk in Chunkify(_repository.Values))
                         observer.OnNext(chunk);
 
                     observer.OnCompleted();
@@ -73,21 +73,22 @@ namespace Pronoodle.Products
         }
 
         // TODO: A good candidate for generalisation and moving to a util/extension.
-        IEnumerable<Product[]> Chunkify(IEnumerable<Product> products)
+        IEnumerable<List<Product>> Chunkify(IEnumerable<Product> products)
         {
-            var chunk = new Product[StreamAllChunkSize];
-            var currentSize = 0;
+            var chunk = new List<Product>(StreamChunkSize);
 
             foreach (var product in products)
             {
-                chunk[currentSize++] = product;
-                if (currentSize == chunk.Length)
+                chunk.Add(product);
+                if (chunk.Count == StreamChunkSize)
                 {
                     yield return chunk;
-                    chunk = new Product[chunk.Length];
-                    currentSize = 0;
+                    chunk = new List<Product>(StreamChunkSize);
                 }
             }
+
+            // Send last chunk if partial.
+            if (chunk.Count > 0) yield return chunk;
         }
     }
 }

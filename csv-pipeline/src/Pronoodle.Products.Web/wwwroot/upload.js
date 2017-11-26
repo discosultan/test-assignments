@@ -11,7 +11,7 @@
     };
 
     const upConsole = document.querySelector("#upload-console");
-    const maxConsoleEntryCount = 200;
+    const maxConsoleEntryCount = 250;
     const decoderOptions = { stream: true };
     const newline = "\r\n";
     const chunkSize = 1024;
