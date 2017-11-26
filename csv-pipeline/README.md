@@ -1,4 +1,4 @@
-# Pronoodle.Products
+# Pronoodle.Products 📦
 
 Products backoffice for PRONOODLE INC.
 
