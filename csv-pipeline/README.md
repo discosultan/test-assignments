@@ -2,6 +2,8 @@
 
 Products backoffice for PRONOODLE INC.
 
+http://pronoodle-products.azurewebsites.net/
+
 ## Requirements
 
 - .NET Core SDK 2.0
