@@ -1,0 +1,121 @@
+﻿/*  1. Base
+    2. Upload section
+    3. Overview section
+*/
+
+/***********/
+/* 1. Base */
+/***********/
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    font-family: "opensans", sans-serif;
+    align-items: stretch;
+}
+
+/* Nav aka top bar */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 10px 0 10px;
+}
+
+.nav-logo, .nav-logo img, .nav-user, .nav-user img { height: 30px; }
+
+.nav-user img { border-radius: 50%; }
+
+.nav-user { display: flex; }
+
+.nav-user span {
+    align-self: center;
+    margin-left: 5px;
+}
+
+/* Widgets */
+
+.widgets {
+    background-color: black;
+    display: flex;
+    flex-grow: 1;
+}
+
+.widget {
+    color: white;
+    margin: 0 2px 0 2px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-header {
+    background-color: #2f3d45;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 42px;
+    padding: 0 10px;
+}
+
+.widget-body {
+    background-color: #1e2b34;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-size: 12px;
+    padding: 10px;
+}
+
+/*********************/
+/* 2. Upload section */
+/*********************/
+
+.upload-console {
+    background-color: black;
+    border: 1px solid #2F3D45;
+    flex-grow: 1;
+    font-family: "consolas", sans-serif;
+    margin-top: 5px;
+    overflow: auto;
+    padding: 5px;
+}
+
+/***********************/
+/* 2. Overview section */
+/***********************/
+
+.overview { overflow: auto; }
+
+.overview-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.overview-table thead tr { background-color: #1e2b34; }
+
+.overview-table tbody tr:nth-child(odd) { background-color: #2f3d45; }
+
+.overview-table tbody tr {
+    animation: fade 0.2s linear;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        background-color: #518DCA;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

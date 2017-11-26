@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Products backoffice | PRONOODLE</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="main">
+    <nav class="nav">
+        <a class="nav-logo" href="/">
+            <img alt="Logo" src="img/logo.svg">
+        </a>
+        <div class="nav-user">
+            <img alt="User" src="img/user.jpg">
+            <span>Jehonathan Sam</span>
+        </div>
+    </nav>
+
+    <div class="widgets">
+        <!-- PRODUCTS CSV IMPORT SECTION -->
+        <section class="widget">
+            <header class="widget-header">IMPORT</header>
+            <div class="widget-body">
+                <!-- FILE UPLOAD -->
+                <input type="file" accept=".csv" onchange="onUpload(event)">
+                <!-- UPLOAD STREAM RESULTS -->
+                <div id="upload-console" class="upload-console"></div>
+            </div>
+        </section>
+
+        <!-- IMPORTED PRODUCTS OVERVIEW SECTION -->
+        <section class="widget">
+            <header class="widget-header">OVERVIEW</header>
+            <div class="widget-body">
+                <div class="overview">
+                    <table class="overview-table">
+                        <thead>
+                            <tr>
+                                <!--<th>Key</th>-->
+                                <th>Article code</th>
+                                <th>Color code</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <!-- Discount price is displayed in the price column if available -->
+                                <!--<th>Discount price</th>-->
+                                <th>Delivered in</th>
+                                <th>Q1</th>
+                                <th>Size</th>
+                                <th>Color</th>
+                            </tr>
+                        </thead>
+                        <tbody id="overview-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TextDecoder API polyfill for Edge -->
+    <script src="polyfills/encoding.js"></script>
+    <script src="upload.js"></script>
+    <script src="overview.js"></script>
+</body>
+</html>
