@@ -29,6 +29,16 @@ html, body {
     padding: 0 10px 0 10px;
 }
 
+.nav-logo {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.nav-logo span:nth-child(1) { color: #518DCA; }
+
+.nav-logo span:nth-child(2) { color: #2F3D45; }
+
 .nav-logo, .nav-logo img, .nav-user, .nav-user img { height: 30px; }
 
 .nav-user img { border-radius: 50%; }
