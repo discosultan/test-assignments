@@ -13,7 +13,9 @@ namespace Pronoodle.Products
     /// </summary>
     public class InMemoryProductRepository : IProductRepository
     {
-        const int StreamChunkSize = 2; // Must be > 0.
+        // Must be > 0.
+        const int StreamExistingChunkSize = 100;
+        const int StreamNewChunkSize = 2;
         static readonly TimeSpan StreamAllChunkDelay = TimeSpan.FromMilliseconds(20);
 
         static readonly TimeSpan AddOrUpdateDelay = TimeSpan.FromMilliseconds(200);
@@ -36,7 +38,7 @@ namespace Pronoodle.Products
                     // as write access to subject to enable parallel concurrency.
                     lock (_syncRoot)
                     // Stream in chunks.
-                    foreach (var chunk in Chunkify(_repository.Values))
+                    foreach (var chunk in Chunkify(_repository.Values, StreamExistingChunkSize))
                         observer.OnNext(chunk);
 
                     observer.OnCompleted();
@@ -64,7 +66,7 @@ namespace Pronoodle.Products
                 foreach (Product product in products)
                     _repository[product.Key] = product;
 
-                foreach (var chunk in Chunkify(products))
+                foreach (var chunk in Chunkify(products, StreamNewChunkSize))
                     _subject.OnNext(chunk);
             }
 
@@ -73,17 +75,17 @@ namespace Pronoodle.Products
         }
 
         // TODO: A good candidate for generalisation and moving to a util/extension.
-        IEnumerable<List<Product>> Chunkify(IEnumerable<Product> products)
+        static IEnumerable<List<Product>> Chunkify(IEnumerable<Product> products, int size)
         {
-            var chunk = new List<Product>(StreamChunkSize);
+            var chunk = new List<Product>(size);
 
             foreach (var product in products)
             {
                 chunk.Add(product);
-                if (chunk.Count == StreamChunkSize)
+                if (chunk.Count == size)
                 {
                     yield return chunk;
-                    chunk = new List<Product>(StreamChunkSize);
+                    chunk = new List<Product>(size);
                 }
             }
 
