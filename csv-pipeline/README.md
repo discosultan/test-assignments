@@ -2,7 +2,7 @@
 
 Products backoffice for PRONOODLE INC.
 
-http://pronoodle-products.azurewebsites.net/ - ⚠ Hosted on Azure free tier! This allows only 5 concurrent websocket connections. Therefore receiving 503 upon socket handshake is common and local hosting preferred.
+http://pronoodle-products.azurewebsites.net/
 
 ## Requirements
 
