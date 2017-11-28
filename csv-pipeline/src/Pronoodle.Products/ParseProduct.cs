@@ -2,6 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace Pronoodle.Products
@@ -13,7 +14,8 @@ namespace Pronoodle.Products
     {
         static readonly Configuration CsvConfig = new Configuration
         {
-            HasHeaderRecord = false
+            HasHeaderRecord = false,
+            CultureInfo = CultureInfo.InvariantCulture
         };
 
         /// <summary>
