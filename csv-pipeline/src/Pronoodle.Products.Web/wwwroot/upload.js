@@ -35,7 +35,7 @@
             let csvBuilder = "";
 
             reader.onload = processReadChunk;
-            reader.onerror = outputToConsole;
+            reader.onerror = err => outputToConsole([err]);
 
             read();
 
@@ -70,23 +70,26 @@
 
             let text = `[${new Date().toISOString()}] ${data.successes.length} product(s) successfully imported`;
             if (data.errors.length > 0) text += `; ${data.errors.length} failed:`;
-            outputToConsole(text);
-            for (const error of data.errors) outputToConsole(error);
+            outputToConsole([text, ...data.errors]);
 
             // Close the socket after having received all the messages.
             if (bytesRead >= file.size && msgsReceived === msgsSent) ws.close();
         }
 
-        function outputToConsole(text) {
-            const entry = document.createElement("div");
-            entry.appendChild(document.createTextNode(text));
-            upConsole.insertBefore(entry, upConsole.firstElementChild);
+        function outputToConsole(lines) {
+            // Because we insert to top and not bottom, we need to add rows within a text block in
+            // reverse order for the output to make sense.
+            for (let line of lines.reverse()) {
+                const row = document.createElement("div");
+                row.appendChild(document.createTextNode(line));
+                upConsole.insertBefore(row, upConsole.firstElementChild);
 
-            consoleEntryCount++;
+                consoleEntryCount++;
 
-            if (consoleEntryCount > maxConsoleEntryCount) {
-                consoleEntryCount = maxConsoleEntryCount;
-                upConsole.removeChild(upConsole.lastElementChild);
+                if (consoleEntryCount > maxConsoleEntryCount) {
+                    consoleEntryCount = maxConsoleEntryCount;
+                    upConsole.removeChild(upConsole.lastElementChild);
+                }
             }
         }
     }
