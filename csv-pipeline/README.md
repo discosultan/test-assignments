@@ -2,8 +2,6 @@
 
 Products backoffice for PRONOODLE INC.
 
-http://pronoodle-products.azurewebsites.net/
-
 ## Requirements
 
 - .NET Core SDK 2.0
@@ -23,7 +21,7 @@ http://pronoodle-products.azurewebsites.net/
 
 2. In browser, navigate to `http://localhost:5000/`.
 
-3. Try import a products `.csv` file (not included in this repo).
+3. Try import a products `.csv` file (sample found in repository root).
 
 ## Assignment description
 
