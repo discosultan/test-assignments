@@ -1,6 +1,6 @@
 # Shopping Basket API
 
-shoppingbasket.azurewebsites.net
+[shoppingbasket.azurewebsites.net](shoppingbasket.azurewebsites.net)
 
 A micro-service that manages shopping baskets of customers. The service contains of a REST API which lets you do the following:
 
