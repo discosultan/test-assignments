@@ -8,6 +8,7 @@ A collection of various test assignments (with solutions) gathered from differen
 - **chess** - Fujitsu's assignment for finding and printing the minimum moves required for a particual chess piece to move from location A to B.
 - **csv-pipeline** - IreckonU's assignment for creating a website to enable uploading large CSV files.
 - **flatten-list** - Sandman's assignment for flattening and printing a tree conforming to specified rules.
+- **embark-user** - Secfi's assignment for creating a Dockerized microservice for user management using TypeScript and TypeORM.
 - **movie-portal** - CGI's assignment for building a web API and a front end SPA for a movie portal. This repository only includes the front end part of the assignment implemented using Angular and React frameworks. 
 - **museum** - CGI's assignment where given a range of visiting times, the assignee is required to figure out an algorithm for finding all the periods of maximum number of concurrent visitors in a museum.
 - **parking-house** - Finestmedia's assignment for creating a parking house system that conforms to specified rules.

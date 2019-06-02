@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+*.sqlite
+
+test/
+.editorconfig
+.gitignore
+Dockerfile
+README.md

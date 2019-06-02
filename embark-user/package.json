@@ -1,0 +1,49 @@
+{
+    "name": "embark-user",
+    "version": "1.0.0",
+    "description": "User management service for Embark Inc.",
+    "main": "src/index.ts",
+    "scripts": {
+        "start": "ts-node src/index.ts",
+        "watch": "nodemon -e ts -w ./src -x npm start",
+        "test": "npx jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/discosultan/embark-user.git"
+    },
+    "author": "Jaanus Varus",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/discosultan/embark-user/issues"
+    },
+    "homepage": "https://github.com/discosultan/embark-user#readme",
+    "dependencies": {
+        "bcrypt": "^3.0.6",
+        "koa": "^2.7.0",
+        "koa-body": "^4.1.0",
+        "koa-router": "^7.4.0",
+        "reflect-metadata": "^0.1.13",
+        "sqlite3": "^4.0.8",
+        "typeorm": "^0.2.17",
+        "uuid": "^3.3.2",
+        "ts-node": "^8.2.0",
+        "typescript": "^3.5.1"
+    },
+    "devDependencies": {
+        "@types/bcrypt": "^3.0.0",
+        "@types/jest": "^24.0.13",
+        "@types/koa": "^2.0.48",
+        "@types/koa-router": "^7.0.40",
+        "@types/node": "^12.0.4",
+        "@types/supertest": "^2.0.7",
+        "@types/uuid": "^3.4.4",
+        "jest": "^24.8.0",
+        "nodemon": "^1.19.1",
+        "supertest": "^4.0.2",
+        "ts-jest": "^24.0.2"
+    },
+    "jest": {
+        "preset": "ts-jest"
+    }
+}
