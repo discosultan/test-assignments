@@ -85,7 +85,7 @@ describe('routes: /image', () => {
 });
 
 function exceptPassword(obj: any): any {
-    const clone = Object.assign({}, obj);
+    const clone = { ...obj };
     delete clone['password'];
     return clone;
 }
