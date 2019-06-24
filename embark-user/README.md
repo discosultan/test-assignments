@@ -37,3 +37,26 @@ $ npm test
 * Use `ts-node-dev` instead of `ts-node` + `nodemon` for faster development cycle.
 * If we care about startup performance, we would pre-compile TypeScript to JavaScript and run
   `node` directly.
+
+## Assignment
+
+Secfi is migrating from a monolithic project to microservices. Next up is writing a microservice that can store our users securely. The challenge is to design a microservice that allows CRUD operations on a user table in a self defined database. The service should allow read and write operations following this interface:
+
+```ts
+interface IUser {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  password: string;
+  avatar: string;
+}
+```
+
+The requirements are as follows:
+
+- Service should be written in TypeScript
+- Service should use TypeORM (http://typeorm.io)
+- Service should be run with Docker
+- Database can be any type (Postgresql, MySQL, SQLite)
+- Password should be stored in encrypted format
+- For the avatar, pick a way of storing you think is most efficient

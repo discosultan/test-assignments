@@ -4,6 +4,7 @@ A collection of various test assignments (with solutions) gathered from differen
 
 ## Overview
 
+- **albumprinter** - Albelli's assignment for creating a .NET API serving the domain of customers and orders.
 - **alphabet** - CGI's assignment for sorting an array of strings based on a custom alphabet.
 - **chess** - Fujitsu's assignment for finding and printing the minimum moves required for a particual chess piece to move from location A to B.
 - **csv-pipeline** - IreckonU's assignment for creating a website to enable uploading large CSV files.
