@@ -16,7 +16,8 @@ Start the web service:
 dotnet run -p src/Adnuf.WebAPI token=<funda_token>
 ```
 
-List top 10 agents with most properties on sale:
+List top 10 agents with most properties on sale. Note that initial request can take a long time
+because the service needs to traverse through all properties but is being rate limited:
 
 ```sh
 curl localhost:5000/agent/top_by_properties?city=amsterdam&limit=10
