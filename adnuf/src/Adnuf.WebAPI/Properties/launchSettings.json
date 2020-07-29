@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Adnuf.WebAPI": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "token": "Value"
+      }
+    }
+  }
+}
