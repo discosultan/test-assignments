@@ -14,7 +14,7 @@ namespace Adnuf.Clients
 {
     public class FundaClient
     {
-        public static readonly string BaseUri = "http://partnerapi.funda.nl/feeds/Aanbod.svc/json";
+        static readonly string BaseUri = "http://partnerapi.funda.nl/feeds/Aanbod.svc/json";
 
         readonly HttpClient client;
         readonly TimeLimiter rateLimiter;
