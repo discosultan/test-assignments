@@ -52,17 +52,19 @@ namespace Adnuf.Housing
             }
             string searchQuery = searchQueryBuilder.ToString();
 
+            // Fetch first page to determine total number of pages.
             logger.LogInformation(
-                $"Fetching first page of size {PageSize} to determine total pages.");
+                $"Fetching first page of size {PageSize} to determine total number of pages.");
             FundaResponse<Property> firstPage = await client
                 .Get<Property>(SearchType, searchQuery, 1, PageSize)
                 .ConfigureAwait(false);
 
+            // Fetch rest of the pages, starting from second.
             logger.LogInformation($"Fetching rest of the {firstPage.Paging.Pages} total pages.");
             var tasks = new List<Task<FundaResponse<Property>>>(firstPage.Paging.Pages - 1);
-            for (int i = 2; i <= firstPage.Paging.Pages; i++)
+            for (int page = 2; page <= firstPage.Paging.Pages; page++)
             {
-                tasks.Add(client.Get<Property>(SearchType, searchQuery, i, PageSize));
+                tasks.Add(client.Get<Property>(SearchType, searchQuery, page, PageSize));
             }
             var subsequentPages = await Task.WhenAll(tasks).ConfigureAwait(false);
 

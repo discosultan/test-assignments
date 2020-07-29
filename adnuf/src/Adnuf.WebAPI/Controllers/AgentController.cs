@@ -30,7 +30,7 @@ namespace Adnuf.WebAPI.Controllers
             [FromQuery]int limit = 10,
             [FromQuery]string[]? extras = null)
         {
-            if (extras == null) extras = new string[0];
+            extras ??= new string[0];
 
             // We are fetching a lot of duplicate entries because the second query
             // (properties with garden) will return a subset of objects already available in the
@@ -54,7 +54,6 @@ namespace Adnuf.WebAPI.Controllers
 
             var tableFormatter = new TableFormatter();
             return tableFormatter.FormatObjects(agents.Take(limit));
-            //return agents.Take(limit);
         }
     }
 }
