@@ -29,16 +29,16 @@ namespace ChessSample.Domain
 
             // If no impassable positions have been specified, return ctor.
             if (impassablePositions == null) return;
-            
+
             foreach (Point impassablePosition in impassablePositions)
             {
                 // Make sure that the specified impassable position does not lie outside the board.
-                if (!IsInBounds(impassablePosition))                
+                if (!IsInBounds(impassablePosition))
                     throw new ArgumentException("Impassable positions must be within board bounds.", "impassablePositions");
-                
+
                 // Mark impassable square as blocked.
                 Squares[impassablePosition.X, impassablePosition.Y].IsBlocked = true;
-            }                        
+            }
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ChessSample.Domain
         {
             if (!IsInBounds(position))
                 throw new ArgumentException
-                    (string.Format("Invalid location. The piece must be placed within the bounds."), 
+                    (string.Format("Invalid location. The piece must be placed within the bounds."),
                     "position");
 
             Square square = Squares[position.X, position.Y];

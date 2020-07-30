@@ -113,7 +113,7 @@ namespace Varus.Parking.UnitTests.Aggregates
                 {
                     Id = _id,
                     Client = _regularClient,
-                    DateTime = entered 
+                    DateTime = entered
                 },
                 new PaidParkingBill
                 {
@@ -124,11 +124,11 @@ namespace Varus.Parking.UnitTests.Aggregates
                 When(new LeaveParkingHouse
                 {
                     Id = _id,
-                    Client = _regularClient                    
+                    Client = _regularClient
                 }),
                 Then(new LeftParkingHouse
                 {
-                    Id = _id,                    
+                    Id = _id,
                     Client = _regularClient,
                     DateTime = InitialDateTime
                 }));
@@ -152,7 +152,7 @@ namespace Varus.Parking.UnitTests.Aggregates
         public void CannotLeaveParkingHouse_BillNotPaid()
         {
             // Arrange.
-            DateTime entered = InitialDateTime.Add(-TimeStepPerAction);            
+            DateTime entered = InitialDateTime.Add(-TimeStepPerAction);
 
             // Act & Assert.
             Test(
@@ -165,7 +165,7 @@ namespace Varus.Parking.UnitTests.Aggregates
                 When(new LeaveParkingHouse
                 {
                     Id = _id,
-                    Client = _regularClient                    
+                    Client = _regularClient
                 }),
                 ThenFailWith<ParkingBillNotPaid>());
         }
@@ -178,7 +178,7 @@ namespace Varus.Parking.UnitTests.Aggregates
             {
                 Vehicle = new Vehicle { Size = ParkingHouseInformation.ParkingSpotSize + new Size(1, 0) }
             };
-            
+
             // Act & Assert.
             Test(
                 Given(),
@@ -214,7 +214,7 @@ namespace Varus.Parking.UnitTests.Aggregates
         public void ContractClientCanLeaveParkingHouse_NoNeedToPayForBill()
         {
             // Arrange.
-            DateTime entered = InitialDateTime.Add(-TimeStepPerAction);            
+            DateTime entered = InitialDateTime.Add(-TimeStepPerAction);
 
             // Act & Assert.
             Test(
@@ -227,11 +227,11 @@ namespace Varus.Parking.UnitTests.Aggregates
                 When(new LeaveParkingHouse
                 {
                     Id = _id,
-                    Client = _contractClient                    
+                    Client = _contractClient
                 }),
                 Then(new LeftParkingHouse
                 {
-                    Id = _id,                    
+                    Id = _id,
                     Client = _contractClient,
                     DateTime = InitialDateTime
                 }));
@@ -243,7 +243,7 @@ namespace Varus.Parking.UnitTests.Aggregates
             // Arrange.
             var events = new Event[ParkingHouseInformation.Capacity -
                 (int)(ParkingHouseInformation.Capacity * ParkingHouseInformation.PortionOfParkingSpotsReservedForContractClients)];
-            for (int i = 0; i < events.Length; ++i)                
+            for (int i = 0; i < events.Length; ++i)
                 events[i] = new EnteredParkingHouse { Client = new Client { Vehicle = new Vehicle() } };
 
             // Act & Assert.

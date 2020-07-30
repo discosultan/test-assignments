@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Gradilium.ShoppingBasket.WebAPI.IntegrationTests.Utils
-{   
+{
     static class HttpContentExtensions
     {
         static readonly JsonSerializer JsonSerializer = new JsonSerializer

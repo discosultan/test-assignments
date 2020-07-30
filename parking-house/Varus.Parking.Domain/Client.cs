@@ -5,7 +5,7 @@
     /// to keep his/her vehicle.
     /// </summary>
     public class Client
-    {        
+    {
         // TODO: Add an id. Reference comparison works only as long as we stay within
         // TODO: the bounds of a process and use an in memory event store.
 

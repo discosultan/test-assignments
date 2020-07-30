@@ -29,12 +29,12 @@ class MoviesPage extends React.Component {
                     <label><b>Search:</b>
                         <input type="text" value={searchFilter} onChange={event => setSearchFilter(event.target.value)} />
                     </label>
-                    
+
                     <label><b>Categories:</b>
                         <select multiple value={categoryFilter} onChange={event => setCategoryFilter(
                             // Since `event.target.options` returns an HTMLCollection, we first convert it
                             // to an Array using ES2015 spreading operator in order to use Array.prototype
-                            // methods such as `filter` and `map`. 
+                            // methods such as `filter` and `map`.
                             [...event.target.options].filter(option => option.selected).map(option => option.value)
                         )}>
                             {categories.map(category =>

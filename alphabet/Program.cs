@@ -30,7 +30,7 @@ namespace Alphabet
                 if (y.Length == 0) return +1; // -.-
 
                 for (int i = 0; i < x.Length; i++)
-                {                    
+                {
                     if (i > y.Length - 1) return +1; // Shorter string comes first.
                     int a = Array.IndexOf(alphabet, x[i]);
                     int b = Array.IndexOf(alphabet, y[i]);
@@ -39,7 +39,7 @@ namespace Alphabet
                 }
 
                 if (x.Length == y.Length) return 0; // We dont sort equal strings.
-                return -1; // Shorter string comes first.                                
+                return -1; // Shorter string comes first.
             });
         }
     }

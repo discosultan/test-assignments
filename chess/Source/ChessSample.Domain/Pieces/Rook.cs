@@ -34,6 +34,6 @@ namespace ChessSample.Domain.Pieces
             }
 
             return result;
-        }  
+        }
     }
 }

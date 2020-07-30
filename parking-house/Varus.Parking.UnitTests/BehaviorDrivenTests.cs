@@ -122,6 +122,6 @@ namespace Varus.Parking.UnitTests
         private static string Serialize(object obj)
         {
             return JsonConvert.SerializeObject(obj);
-        }        
+        }
     }
 }

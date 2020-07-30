@@ -28,7 +28,7 @@ class WeatherPage extends React.Component<WeatherPageProps> {
                             currentWeather={weather}
                             forecast={forecasts[weather.name]}
                             onExpand={fetchForecastForCity}
-                        /> 
+                        />
                     </div>
                 ))}
             </section>

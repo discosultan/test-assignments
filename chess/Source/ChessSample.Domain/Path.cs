@@ -30,7 +30,7 @@ namespace ChessSample.Domain
         /// Gets the number of moves in this path.
         /// </summary>
         public int NumberOfMoves { get { return _moves.Count; } }
-        
+
         internal bool IsFinished { get; set; }
 
         /// <summary>

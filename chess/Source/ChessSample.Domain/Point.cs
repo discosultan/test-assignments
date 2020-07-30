@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace ChessSample.Domain
-{    
+{
     /// <summary>
     /// Represents a two-dimensional integer coordinate.
     /// </summary>
@@ -16,11 +16,11 @@ namespace ChessSample.Domain
         /// Left coordinate.
         /// </summary>
         public int X;
-     
+
         /// <summary>
         /// Top coordinate.
         /// </summary>
-        public int Y;        
+        public int Y;
 
          /// <summary>
         /// Initializes a new instance of the <see cref="Point"/> struct.

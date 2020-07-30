@@ -6,7 +6,7 @@ export interface Weather {
     date: Date
 }
 
-export interface Wind { 
+export interface Wind {
     speed: number,
     deg: number
 }

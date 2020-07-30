@@ -19,7 +19,7 @@ export default function moviesPage(state = initialState, action) {
         case 'RECEIVE_CATEGORIES':
             return { ...state, categories: action.result };
         case 'RECEIVE_MOVIE_DETAILS':
-            return { ...state, selectedMovieDetails: action.result };                
+            return { ...state, selectedMovieDetails: action.result };
         default:
             return state;
     }

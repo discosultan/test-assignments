@@ -23,7 +23,7 @@ namespace Varus.Parking.Domain.Aggregates
     {
         private readonly ITimeMachine _time;
         // We use thread safe dictionary for thread safe command handling.
-        private readonly IDictionary<Client, ClientParkingData> _clients = 
+        private readonly IDictionary<Client, ClientParkingData> _clients =
                      new ConcurrentDictionary<Client, ClientParkingData>();
         private readonly ParkingHouseInformation _info;
 
@@ -99,7 +99,7 @@ namespace Varus.Parking.Domain.Aggregates
             if (command.Amount < bill)
                 throw new NotEnoughPaid { Id = command.Id, AmountPaid = command.Amount, BillAmount = bill };
 
-            // Generate event.            
+            // Generate event.
             yield return new PaidParkingBill
             {
                 Id = command.Id,

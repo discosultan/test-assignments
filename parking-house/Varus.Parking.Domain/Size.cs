@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Varus.Parking.Domain
-{    
+{
     /// <summary>
     /// An immutable structure composed of width and length.
     /// </summary>
@@ -17,12 +17,12 @@ namespace Varus.Parking.Domain
             Width = width;
             Length = length;
         }
-        
+
         /// <summary>
         /// The width component of the size.
         /// </summary>
         public readonly int Width;
-        
+
         /// <summary>
         /// The length component of the size.
         /// </summary>
@@ -44,8 +44,8 @@ namespace Varus.Parking.Domain
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(Size)) return false;            
-            return Equals((Size)obj);            
+            if (obj.GetType() != typeof(Size)) return false;
+            return Equals((Size)obj);
         }
 
         /// <inheritdoc/>

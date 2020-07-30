@@ -23,6 +23,6 @@ namespace ChessSample.Domain.Pieces
         protected override IEnumerable<Point> GetPossibleMoves(Point currentPosition)
         {
             return PossibleMoves;
-        }        
+        }
     }
 }

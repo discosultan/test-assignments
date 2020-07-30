@@ -8,9 +8,9 @@ namespace FlattenList
         // ülessanne: implementeeri meetod "PrintList" nii et oodatud tulemus pinditakse konsooli
 
         // sisendandmed: sisendiks on objekt TestData, mida võib vaadelda Listina, mille igaks elemendiks on List või Väärtus
-        // JSON'ina visualiseerituna oleks TestData: 
+        // JSON'ina visualiseerituna oleks TestData:
         // {"a",{"b","c",{"d","e"},{"f"},"g"},"h","i",{"j","k"}}
-        // C# sisendandmete struktuur: 
+        // C# sisendandmete struktuur:
         // * abstraktne klass Node -  sellest koosnevad List'id
         // * klass ValueNode:Node - klass millega hoitakse listis Väärtust
         // * klass ListNode:Node - klass millega hoitakse listis alamlisti

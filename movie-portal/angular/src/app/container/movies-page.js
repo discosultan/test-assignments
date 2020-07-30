@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import http from '../service/http'; 
+import http from '../service/http';
 import movie from '../component/movie';
 import moviesList from '../component/movies-list';
 
@@ -15,8 +15,8 @@ const moviesPage = {
             // Select the first movie by default.
             if (movies.length) {
                 this.onSelectMovie(movies[0]);
-            }            
-        });        
+            }
+        });
     }
 };
 

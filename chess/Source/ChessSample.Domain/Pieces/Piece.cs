@@ -43,7 +43,7 @@ namespace ChessSample.Domain.Pieces
             // Search graph is used to keep track of visited squares and also the min number
             // of moves made to reach that square.
             var searchGraph = new Dictionary<Point, int>();
-            
+
             // Starting path. This will branch later on.
             var result = new Path();
 
@@ -84,9 +84,9 @@ namespace ChessSample.Domain.Pieces
 
                 // Branch the current path to keep copies of all possible paths.
                 Path branch = result.DeepCopy();
-                
+
                 AttemptMove(searchGraph, currentPosition, nextPosition, targetPosition, branch, paths);
-                
+
                 // If the branch is not finished (meaning that the target position is not yet reached),
                 // continue branching.
                 if (!branch.IsFinished) continue;
@@ -100,7 +100,7 @@ namespace ChessSample.Domain.Pieces
         }
 
         private void AttemptMove(Dictionary<Point, int> searchGraph,
-            Point currentPosition, Point nextPosition, Point targetPosition, Path result, 
+            Point currentPosition, Point nextPosition, Point targetPosition, Path result,
             List<Path> possiblePaths)
         {
             // Number of moves made after this move.
@@ -127,7 +127,7 @@ namespace ChessSample.Domain.Pieces
             }
 
             // Add the move from current to next position to the path.
-            result.AddMove(currentPosition, nextPosition);            
+            result.AddMove(currentPosition, nextPosition);
 
             if (result.IsFinished) return;
 

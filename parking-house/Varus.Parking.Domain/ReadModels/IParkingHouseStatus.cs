@@ -4,8 +4,8 @@ using Varus.Core;
 namespace Varus.Parking.Domain.ReadModels
 {
     /// <summary>
-    /// Contract for read model to query data from a parking house. 
-    /// An interface is the recommended access medium for read models as it 
+    /// Contract for read model to query data from a parking house.
+    /// An interface is the recommended access medium for read models as it
     /// hides away <see cref="ISubscribeTo{TEvent}"/> implementations.
     /// </summary>
     public interface IParkingHouseStatus

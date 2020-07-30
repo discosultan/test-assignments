@@ -26,9 +26,9 @@ namespace Varus.Parking.UnitTests.ReadModels
             Capacity = 500,
             HourlyRate = 10,
             ParkingSpotSize = new Size(4, 2),
-            PortionOfParkingSpotsReservedForContractClients = 0.1f            
+            PortionOfParkingSpotsReservedForContractClients = 0.1f
         };
-        
+
         private MessageDispatcher _messageDispatcher;
 
         private Guid _id;
@@ -49,13 +49,13 @@ namespace Varus.Parking.UnitTests.ReadModels
             // Create message dispatcher and register parking house.
             _messageDispatcher = new MessageDispatcher(store, ioc);
             _messageDispatcher.ScanType<ParkingHouse>();
-        }        
+        }
 
         [SetUp]
         public void Setup()
         {
             _id = Guid.NewGuid();
-            _parkingHouseStatus = new ParkingHouseStatus(_id);            
+            _parkingHouseStatus = new ParkingHouseStatus(_id);
             _messageDispatcher.ScanInstance(_parkingHouseStatus);
         }
 
@@ -63,29 +63,29 @@ namespace Varus.Parking.UnitTests.ReadModels
         public void ReadParkingHouseStatus_EndOfSimulation()
         {
             // Arrange.
-            var client1 = NewClient();            
+            var client1 = NewClient();
             var client2 = NewClient();
             const int hoursClient1SpendsInParkingHouse = 2;
             const int totalNumberOfCarsParked = 2;
 
             // Act.
             _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client1 });   // 00:00 ENTERED
-            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client2 });   // 01:00 ENTERED            
+            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client2 });   // 01:00 ENTERED
             _messageDispatcher.SendCommand(new PayParkingBill                                       // 02:00 PAID PARKING BILL
             {
                 Id = _id,
                 Client = client1,
                 Amount = hoursClient1SpendsInParkingHouse * ParkingHouseInformation.HourlyRate
             });
-            _messageDispatcher.SendCommand(new LeaveParkingHouse { Id = _id, Client = client1 });   // 03:00 LEFT            
+            _messageDispatcher.SendCommand(new LeaveParkingHouse { Id = _id, Client = client1 });   // 03:00 LEFT
 
             // Assert.
             Assert.AreEqual(hoursClient1SpendsInParkingHouse * ParkingHouseInformation.HourlyRate, _parkingHouseStatus.AmountOfMoneyReceived);
             Assert.AreEqual(totalNumberOfCarsParked, _parkingHouseStatus.TotalNumberOfCarsParked);
             Assert.False(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client1));
-            Assert.True(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client2));            
+            Assert.True(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client2));
             Assert.True(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client1));
-            Assert.False(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client2));            
+            Assert.False(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client2));
         }
 
         [Test]
@@ -93,22 +93,22 @@ namespace Varus.Parking.UnitTests.ReadModels
         {
             // Arrange.
             var client1 = NewClient();
-            var client2 = NewClient();            
+            var client2 = NewClient();
             const int hoursClient1SpendsInParkingHouse = 2;
             const int hoursToReplay = 2;
             const int totalNumberOfCarsParked = 2;
             DateTime replayUntil = InitialDateTime.Add(TimeStepPerAction.Multiply(hoursToReplay));
 
             // Act.
-            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client1 });   // 00:00 ENTERED            
-            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client2 });   // 02:00 ENTERED <== WE ARE GOING TO REPLAY TILL THAT POINT         
+            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client1 });   // 00:00 ENTERED
+            _messageDispatcher.SendCommand(new EnterParkingHouse { Id = _id, Client = client2 });   // 02:00 ENTERED <== WE ARE GOING TO REPLAY TILL THAT POINT
             _messageDispatcher.SendCommand(new PayParkingBill                                       // 03:00 PAID PARKING BILL
             {
                 Id = _id,
                 Client = client1,
                 Amount = hoursClient1SpendsInParkingHouse * ParkingHouseInformation.HourlyRate
             });
-            _messageDispatcher.SendCommand(new LeaveParkingHouse { Id = _id, Client = client1 });   // 04:00 LEFT            
+            _messageDispatcher.SendCommand(new LeaveParkingHouse { Id = _id, Client = client1 });   // 04:00 LEFT
 
             // Recreate read model and republish events only until a certain point in time.
             _parkingHouseStatus = new ParkingHouseStatus(_id);
@@ -119,9 +119,9 @@ namespace Varus.Parking.UnitTests.ReadModels
             Assert.AreEqual(0, _parkingHouseStatus.AmountOfMoneyReceived);
             Assert.AreEqual(totalNumberOfCarsParked, _parkingHouseStatus.TotalNumberOfCarsParked);
             Assert.True(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client1));
-            Assert.True(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client2));            
+            Assert.True(_parkingHouseStatus.ClientsInParkingHouse.Any(client => client == client2));
             Assert.False(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client1));
-            Assert.False(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client2));            
+            Assert.False(_parkingHouseStatus.ClientsWhoHaveLeftParkingHouse.Any(client => client == client2));
         }
 
         private static Client NewClient()

@@ -9,7 +9,7 @@ describe('in-array filter', () => {
     });
 
     beforeEach(angular.mock.inject(_inArrayFilter_ => {
-        inArrayFilter = _inArrayFilter_;        
+        inArrayFilter = _inArrayFilter_;
     }));
 
     it('should filter based on elements in array', () => {

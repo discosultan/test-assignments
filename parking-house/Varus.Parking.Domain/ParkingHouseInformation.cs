@@ -20,6 +20,6 @@
         /// <summary>
         /// Gets or sets the hourly cost for parking.
         /// </summary>
-        public decimal HourlyRate { get; set; }        
+        public decimal HourlyRate { get; set; }
     }
 }

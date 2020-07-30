@@ -22,10 +22,10 @@ namespace ChessSample.CommandLine
             {
                 inputData.BoardWidth = int.Parse(reader.ReadLine());
                 inputData.BoardHeight = int.Parse(reader.ReadLine());
-                string pieceType = UppercaseFirst(reader.ReadLine().Trim().ToLower());                    
+                string pieceType = UppercaseFirst(reader.ReadLine().Trim().ToLower());
                 inputData.PieceType = typeof(Piece).Assembly.GetType(typeof(Piece).Namespace + "." + pieceType, true);
                 inputData.StartingPosition = _positionConverter.ToCoordinates(ReadLine(reader));
-                inputData.TargetPosition = _positionConverter.ToCoordinates(ReadLine(reader));                
+                inputData.TargetPosition = _positionConverter.ToCoordinates(ReadLine(reader));
                 string[] blockedSquares = ReadLine(reader).Split(' ');
                 inputData.BlockedSquares = new Point[blockedSquares.Length];
                 for (int i = 0; i < blockedSquares.Length; ++i)
@@ -34,14 +34,14 @@ namespace ChessSample.CommandLine
                     if (blockedSquare.Contains(","))
                         blockedSquare = blockedSquare.Substring(0, blockedSquare.Length - 1);
                     inputData.BlockedSquares[i] = _positionConverter.ToCoordinates(blockedSquare);
-                    
+
                 }
             }
             return inputData;
         }
 
         public void WriteOutputFile(string path, OutputData data)
-        {            
+        {
             using (var writer = new StreamWriter(path))
             {
                 writer.WriteLine(data.NumberOfMoves);
@@ -51,7 +51,7 @@ namespace ChessSample.CommandLine
                     writer.Write(_positionConverter.ToText(data.StartingPosition) + separator);
                     writer.WriteLine(string.Join(separator, shortestPath.Moves.Select(x => _positionConverter.ToText(x.To))));
                 }
-                
+
             }
         }
 

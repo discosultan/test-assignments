@@ -25,7 +25,7 @@ namespace Varus.Core
         /// <param name="events">Events to apply.</param>
         public void ApplyEvents(IEnumerable<Event> events)
         {
-            foreach (var e in events)                
+            foreach (var e in events)
                 GetType().GetMethod("ApplyEvent")
                     .MakeGenericMethod(e.GetType())
                     .Invoke(this, new object[] { e });

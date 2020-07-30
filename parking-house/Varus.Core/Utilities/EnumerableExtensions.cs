@@ -17,7 +17,7 @@ namespace Varus.Core.Utilities
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             Check.ArgumentNotNull(source, "source");
-            Check.ArgumentNotNull(action, "action");            
+            Check.ArgumentNotNull(action, "action");
             foreach (var element in source)
             {
                 action(element);

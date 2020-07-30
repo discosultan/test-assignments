@@ -6,7 +6,7 @@ namespace Varus.Core
     /// Abstraction for an IoC container.
     /// </summary>
     public interface IDependencyResolver
-    {        
+    {
         object GetObject(Type type);
     }
 }

@@ -14,8 +14,8 @@ namespace Varus.Core
             lock (_lock)
             {
                 List<Event> events;
-                return _store.TryGetValue(id, out events) 
-                    ? events 
+                return _store.TryGetValue(id, out events)
+                    ? events
                     : Enumerable.Empty<Event>();
             }
         }

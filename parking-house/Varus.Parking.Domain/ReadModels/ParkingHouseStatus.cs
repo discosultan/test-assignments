@@ -8,7 +8,7 @@ namespace Varus.Parking.Domain.ReadModels
     /// <summary>
     /// Read only model used for querying data about a parking house.
     /// </summary>
-    public class ParkingHouseStatus : 
+    public class ParkingHouseStatus :
         IParkingHouseStatus,
         ISubscribeTo<EnteredParkingHouse>,
         ISubscribeTo<LeftParkingHouse>,
@@ -30,7 +30,7 @@ namespace Varus.Parking.Domain.ReadModels
         /// multiple times during the simulation, each parking session is considered
         /// as a new car parked.
         /// </summary>
-        public int TotalNumberOfCarsParked { get; private set; }        
+        public int TotalNumberOfCarsParked { get; private set; }
 
         /// <summary>
         /// Gets clients currently in the parking house.
@@ -54,7 +54,7 @@ namespace Varus.Parking.Domain.ReadModels
         /// <param name="parkingHouseId">Parking house identifier.</param>
         public ParkingHouseStatus(Guid parkingHouseId)
         {
-            _id = parkingHouseId;            
+            _id = parkingHouseId;
         }
 
         public void Handle(EnteredParkingHouse e)

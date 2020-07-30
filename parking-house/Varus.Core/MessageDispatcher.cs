@@ -58,7 +58,7 @@ namespace Varus.Core
         {
             _eventStore.LoadEventsFor<TAggregate>(id)
                 .Where(evt => evt.DateTime <= until)
-                .ForEach(PublishEvent);            
+                .ForEach(PublishEvent);
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Varus.Core
         private void PublishEvent(Event e)
         {
             List<Action<Event>> subscribers;
-            if (_eventSubscribers.TryGetValue(e.GetType(), out subscribers))            
-                subscribers.ForEach(action => action(e));            
+            if (_eventSubscribers.TryGetValue(e.GetType(), out subscribers))
+                subscribers.ForEach(action => action(e));
         }
 
         /// <summary>
@@ -77,12 +77,12 @@ namespace Varus.Core
         /// command.
         /// </summary>
         /// <typeparam name="TAggregate"></typeparam>
-        /// <typeparam name="TCommand"></typeparam>        
+        /// <typeparam name="TCommand"></typeparam>
         public void AddHandlerFor<TCommand, TAggregate>()
             where TAggregate : Aggregate where TCommand : Command
         {
             Check.False(_commandHandlers.ContainsKey(typeof (TCommand)),
-                "Command handler already registered for " + typeof (TCommand).Name);            
+                "Command handler already registered for " + typeof (TCommand).Name);
 
             _commandHandlers.Add(typeof(TCommand), command =>
             {
@@ -102,7 +102,7 @@ namespace Varus.Core
                     _eventStore.SaveEventsFor<TAggregate>(aggregate.Id, resultEvents);
 
                 // Publish them to all subscribers.
-                resultEvents.ForEach(PublishEvent);                
+                resultEvents.ForEach(PublishEvent);
             });
         }
 
@@ -113,13 +113,13 @@ namespace Varus.Core
         /// <typeparam name="TEvent"></typeparam>
         /// <param name="subscriber"></param>
         public void AddSubscriberFor<TEvent>(ISubscribeTo<TEvent> subscriber) where TEvent : Event
-        {            
+        {
             List<Action<Event>> subscribers;
             if (!_eventSubscribers.TryGetValue(typeof(TEvent), out subscribers))
             {
                 subscribers = new List<Action<Event>>();
                 _eventSubscribers.Add(typeof(TEvent), subscribers);
-            }            
+            }
             subscribers.Add(evt => subscriber.Handle((TEvent)evt));
         }
 
@@ -132,7 +132,7 @@ namespace Varus.Core
         public void ScanAssembly(Assembly ass)
         {
             ass.GetTypes().ForEach(type => ScanInstance(CreateInstanceOf(type)));
-        }        
+        }
 
         /// <summary>
         /// Looks at the specified object type, examples what commands it handles
@@ -197,7 +197,7 @@ namespace Varus.Core
             catch (Exception)
             {
                 return Activator.CreateInstance(type);
-            }            
+            }
         }
     }
 }

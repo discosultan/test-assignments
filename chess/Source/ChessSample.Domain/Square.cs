@@ -12,7 +12,7 @@ namespace ChessSample.Domain
         /// square doesn't contain a <see cref="Piece"/>.
         /// </summary>
         public Piece Piece { get; internal set; }
-        
+
         /// <summary>
         /// Gets if the square is blocked, meaning no <see cref="Piece"/> can be
         /// placed on it or move through it.

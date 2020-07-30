@@ -12,7 +12,7 @@ const moviesList = {
         movies: '<',
         onselect: '&'
     },
-    template: require('./movies-list.html')    
+    template: require('./movies-list.html')
 };
 
 export default angular.module('component.movies-list', [inArray])

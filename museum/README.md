@@ -19,7 +19,7 @@ Muuseumis registreeriti päeva jooksul iga külastaja saabumis- ja lahkumisaeg m
     - Väljastab eelmises punktis leitud ajavahemiku ja külastajate arvu standardväljundisse kujul <ajavahemiku algus>-<ajavahemiku lõpp>;<külastajate arv>. Näiteks:
         ```
         11:10-14:20;2
-        ```   
+        ```
 2. Kogu lähtekood paigutada alamkataloogi “src”.
 3. Kirjeldada kasutatud ajavahemiku ja külastajate arvu leidmise algoritm tekstifaili “Ajavahemiku leidmine.txt”.
 4. Dokumenteerida lähtekoodi avalikud klassid ja meetodid vastavalt javadoc reeglitele ning genereerida javadoc utiliidiga dokumentatsioon eraldi kataloogi “javadoc”.

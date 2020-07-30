@@ -11,6 +11,6 @@ namespace ChessSample.Domain.Pieces
         protected override IEnumerable<Point> GetPossibleMoves(Point currentPosition)
         {
             throw new System.NotImplementedException();
-        }  
+        }
     }
 }

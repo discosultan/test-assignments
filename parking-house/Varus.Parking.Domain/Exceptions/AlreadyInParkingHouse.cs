@@ -4,6 +4,6 @@ namespace Varus.Parking.Domain.Exceptions
 {
     public class AlreadyInParkingHouse : DomainException
     {
-        public Client Client { get; set; }        
+        public Client Client { get; set; }
     }
 }

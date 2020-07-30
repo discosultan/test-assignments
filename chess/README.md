@@ -1,6 +1,6 @@
 ## About
 
-Fujitsu's assignment where the assignee is required to find and print the minimum moves required for a particual chess piece to move from location A to B. 
+Fujitsu's assignment where the assignee is required to find and print the minimum moves required for a particual chess piece to move from location A to B.
 
 ## Assignment (Estonian)
 

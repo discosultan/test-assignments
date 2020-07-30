@@ -6,6 +6,6 @@
 
 Open `/dist/index.html`
 
-### Build 
+### Build
 
 > `webpack --watch`

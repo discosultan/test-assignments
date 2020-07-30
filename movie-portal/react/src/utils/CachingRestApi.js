@@ -10,7 +10,7 @@ export default class CachingRestApi extends RestApi {
 
         if (existingResult)
             return Promise.resolve(existingResult);
-            
+
         return super.get(url).then(result => {
             cache[cacheKey] = result;
             return result;

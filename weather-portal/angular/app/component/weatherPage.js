@@ -4,7 +4,7 @@ require('../service/mockWeatherApi.js');
 
 angular
     .module('app.component.weatherPage', [
-        // The mock service below can be used instead of the real weather API to 
+        // The mock service below can be used instead of the real weather API to
         // prevent making external API calls.
         'app.service.weatherApi',
         // 'app.service.mockWeatherApi',

@@ -1,6 +1,6 @@
 import httpModule from '../../src/app/service/http';
 
-describe('http service', () => {  
+describe('http service', () => {
     let http;
     let $httpBackend;
 

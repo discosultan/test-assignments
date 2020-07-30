@@ -4,7 +4,7 @@ const movie = {
     // = - two-way binding
     // < - one-way binding
     // @ - string binding
-    // & - callback binding    
+    // & - callback binding
     bindings: {
         value: '<'
     },

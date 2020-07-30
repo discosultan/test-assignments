@@ -11,22 +11,22 @@ namespace Museum
     class Solver : ISolver // Fast when dealing with LARGE number of ranges.
     {
         private const int MinutesInHour = 60;
-        private const int MinutesInDay = 24 * MinutesInHour;        
+        private const int MinutesInDay = 24 * MinutesInHour;
 
         public Tuple<List<Tuple<TimeSpan, TimeSpan>>, int> Solve(Tuple<TimeSpan, TimeSpan>[] visitingRanges)
-        {   
+        {
             // Flatten all the entering and leaving times into a single list with additional marker to determine
-            // whether we are dealing with an enterer or leaver.         
+            // whether we are dealing with an enterer or leaver.
             var times = new KeyValuePair<int, bool>[visitingRanges.Length*2];
             for (int i = 0; i < visitingRanges.Length; i++)
-            {                
-                var range = visitingRanges[i];                
+            {
+                var range = visitingRanges[i];
                 times[i] = new KeyValuePair<int, bool>(TimeToMinutes(range.Item1), true);
                 times[times.Length - 1 - i] = new KeyValuePair<int, bool>(TimeToMinutes(range.Item2), false);
             }
 
-            
-            // Order the list by time asc, then by marker value desc.            
+
+            // Order the list by time asc, then by marker value desc.
             Array.Sort(times, (x, y) =>
             {
                 int result = x.Key.CompareTo(y.Key);
@@ -44,7 +44,7 @@ namespace Museum
 
             // Let's go!
             foreach (var time in times)
-            {                
+            {
                 if (time.Value)
                 {
                     concurrentVisitors++;
@@ -68,8 +68,8 @@ namespace Museum
                     {
                         isMaxActive = false;
                         maxDateRanges.Add(new KeyValuePair<int, int>(enterTime, time.Key));
-                    }                    
-                }                
+                    }
+                }
             }
 
             return Tuple.Create(MinuteRangesToTimeRanges(maxDateRanges), maxConcurrentVisitors);

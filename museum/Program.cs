@@ -51,7 +51,7 @@ namespace Museum
         }
 
         static TimeSpan ParseDateTime(string input)
-        {            
+        {
             string[] split = input.Split(':');
             return new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), 0); // We don't really care about the date part.
         }
