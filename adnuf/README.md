@@ -20,13 +20,13 @@ List top 10 agents with most properties on sale. Note that initial request can t
 because the service needs to traverse through all properties but is being rate limited:
 
 ```sh
-curl localhost:5000/agent/top_by_properties?city=amsterdam&limit=10
+curl "localhost:5000/agent/top_by_properties?city=amsterdam&limit=10"
 ```
 
 List top 10 agents with most properties with a garden on sale:
 
 ```sh
-curl localhost:5000/agent/top_by_properties?city=amsterdam&limit=10&extras=garden
+curl "localhost:5000/agent/top_by_properties?city=amsterdam&limit=10&extras=garden"
 
 ```
 
